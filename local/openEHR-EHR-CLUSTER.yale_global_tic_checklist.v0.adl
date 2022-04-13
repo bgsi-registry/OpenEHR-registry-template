@@ -1,0 +1,3002 @@
+archetype (adl_version=1.4; uid=a6ab7231-6d77-46a2-a098-9f134c18c189)
+	openEHR-EHR-CLUSTER.yale_global_tic_checklist.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+	translations = <
+		["nb"] = <
+			language = <[ISO_639-1::nb]>
+			author = <
+				["name"] = <"John Tore Valand">
+				["organisation"] = <"Haukeland Universitetssjukehus">
+				["email"] = <"john.tore.valand@helse-vest-ikt.no">
+			>
+		>
+	>
+
+description
+	original_author = <
+		["date"] = <"2021-03-19">
+	>
+	lifecycle_state = <"in_development">
+	details = <
+		["nb"] = <
+			language = <[ISO_639-1::nb]>
+			purpose = <"Brukes for å registrere en symptomsjekkliste brukt som basis for skår av alvorlighetsgrad av tics.">
+			copyright = <"© Nasjonal IKT HF, openEHR Foundation">
+			use = <"Brukes for å registrere en symptomsjekkliste brukt som basis for Yale global tic severity scale.
+
+Arketypen inneholder symptomsjekklisten som en del av Yale global tic severity scale. Benytt arketypen CLUSTER.xxx for skåringen.
+">
+		>
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record a symptom checklist as a part of the Yale global tic severity scale.">
+			copyright = <"© Nasjonal IKT HF, openEHR Foundation">
+			use = <"To record a symptom checklist as a part of the Yale global tic severity scale.
+
+The archetype represents the checklist of the Yale global tic severity scale. Use the OBSERVATION.xxx tor record the score.">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["references"] = <"Leckman, J. F., Riddle, M. A., Hardin, M. T., Ort, S. I., Swartz, K. L., Stevenson, J. O. H. N., & Cohen, D. J. (1989). The Yale Global Tic Severity Scale: initial testing of a clinician-rated scale of tic severity. Journal of the American Academy of Child & Adolescent Psychiatry, 28(4), 566-573
+
+Norsk oversettelse ved Heike Eichele (2020), Regionalt fagmiljø for autisme, ADHD, Tourettes syndrom og narkolepsi Helse Vest Etter tillatelse fra Lawrence Scahill og James Leckman, Yale.">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["MD5-CAM-1.0.1"] = <"1C691E1B6B1886A2A2BA2D0A18B36C03">
+		["build_uid"] = <"50faf789-3237-4471-82e0-8fc34f9bc201">
+		["revision"] = <"0.0.1-alpha">
+	>
+
+definition
+	CLUSTER[at0000] matches {    -- Yale Global Tic Severity Scale - checklist
+		items cardinality matches {1..*; unordered} matches {
+			CLUSTER[at0001] occurrences matches {0..1} matches {    -- Motor tic
+				items cardinality matches {1..*; unordered} matches {
+					ELEMENT[at0002] occurrences matches {0..1} matches {    -- Age of first motor tics?
+						value matches {
+							DV_DURATION matches {
+								value matches {PY/|>=P0Y|}
+							}
+						}
+					}
+					ELEMENT[at0003] occurrences matches {0..1} matches {    -- Describe first motor tic
+						value matches {
+							DV_TEXT matches {*}
+						}
+					}
+					ELEMENT[at0004] occurrences matches {0..1} matches {    -- Was tic onset sudden or gradual?
+						value matches {
+							DV_TEXT matches {*}
+						}
+					}
+					ELEMENT[at0005] occurrences matches {0..1} matches {    -- Age of worst motor tics?
+						value matches {
+							DV_DURATION matches {
+								value matches {PY/|>=P0Y|}
+							}
+						}
+					}
+					CLUSTER[at0006] occurrences matches {0..1} matches {    -- Motor tic symptom checklist
+						items cardinality matches {1..*; unordered} matches {
+							CLUSTER[at0007] occurrences matches {0..1} matches {    -- Simple eye movements
+								items cardinality matches {1..*; unordered} matches {
+									ELEMENT[at0008] occurrences matches {0..*} matches {    -- Tics
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0009,    -- Eye blinking
+													at0010,    -- Squinting
+													at0011,    -- A quick turning of the eyes
+													at0012,    -- Rolling of the eyes to one side
+													at0013]    -- Opening eyes wide very briefly
+												}
+											}
+										}
+									}
+									ELEMENT[at0014] occurrences matches {0..1} matches {    -- Age of onset
+										value matches {
+											DV_DURATION matches {
+												value matches {PY/|>=P0Y|}
+											}
+										}
+									}
+									ELEMENT[at0015] occurrences matches {0..1} matches {    -- Verified
+										value matches {
+											DV_BOOLEAN matches {
+												value matches {true}
+											}
+										}
+									}
+									ELEMENT[at0016] occurrences matches {0..1} matches {    -- Description
+										value matches {
+											DV_TEXT matches {*}
+										}
+									}
+									ELEMENT[at0017] occurrences matches {0..1} matches {    -- Occurence
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0018,    -- Ever
+													at0019]    -- Currently
+												}
+											}
+										}
+									}
+								}
+							}
+							CLUSTER[at0020] occurrences matches {0..1} matches {    -- Complex eye movements
+								items cardinality matches {1..*; unordered} matches {
+									ELEMENT[at0008] occurrences matches {0..*} matches {    -- Tics
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0022,    -- Eye gestures such as looking surprised or quizzical
+													at0023]    -- Looking to one side for a brief period of time, as if s/he heard a noise.
+												}
+											}
+										}
+									}
+									ELEMENT[at0014] occurrences matches {0..1} matches {    -- Age of onset
+										value matches {
+											DV_DURATION matches {
+												value matches {PY/|>=P0Y|}
+											}
+										}
+									}
+									ELEMENT[at0015] occurrences matches {0..1} matches {    -- Verified
+										value matches {
+											DV_BOOLEAN matches {
+												value matches {true}
+											}
+										}
+									}
+									ELEMENT[at0016] occurrences matches {0..1} matches {    -- Description
+										value matches {
+											DV_TEXT matches {*}
+										}
+									}
+									ELEMENT[at0017] occurrences matches {0..1} matches {    -- Occurence
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0018,    -- Ever
+													at0019]    -- Currently
+												}
+											}
+										}
+									}
+								}
+							}
+							CLUSTER[at0030] occurrences matches {0..1} matches {    -- Simple nose, mouth, tongue movements, or facial grimacing
+								items cardinality matches {1..*; unordered} matches {
+									ELEMENT[at0008] occurrences matches {0..*} matches {    -- Tics
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0032,    -- Nose twitching
+													at0033,    -- Biting the tongue
+													at0034,    -- Chewing on the lip or licking the lip
+													at0035,    -- Lip pouting
+													at0036]    -- Teethbaring or teeth grinding
+												}
+											}
+										}
+									}
+									ELEMENT[at0014] occurrences matches {0..1} matches {    -- Age of onset
+										value matches {
+											DV_DURATION matches {
+												value matches {PY/|>=P0Y|}
+											}
+										}
+									}
+									ELEMENT[at0015] occurrences matches {0..1} matches {    -- Verified
+										value matches {
+											DV_BOOLEAN matches {
+												value matches {true}
+											}
+										}
+									}
+									ELEMENT[at0016] occurrences matches {0..1} matches {    -- Description
+										value matches {
+											DV_TEXT matches {*}
+										}
+									}
+									ELEMENT[at0017] occurrences matches {0..1} matches {    -- Occurence
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0018,    -- Ever
+													at0019]    -- Currently
+												}
+											}
+										}
+									}
+								}
+							}
+							CLUSTER[at0043] occurrences matches {0..1} matches {    -- Complex nose, mouth, tongue movements, or facial grimacing
+								items cardinality matches {1..*; unordered} matches {
+									ELEMENT[at0008] occurrences matches {0..*} matches {    -- Tics
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0045,    -- Broadening the nostrils as if smelling something
+													at0046,    -- Smiling, or other gestures involving the mouth
+													at0047]    -- Holding funny expressions, or sticking out the tongue
+												}
+											}
+										}
+									}
+									ELEMENT[at0014] occurrences matches {0..1} matches {    -- Age of onset
+										value matches {
+											DV_DURATION matches {
+												value matches {PY/|>=P0Y|}
+											}
+										}
+									}
+									ELEMENT[at0015] occurrences matches {0..1} matches {    -- Verified
+										value matches {
+											DV_BOOLEAN matches {
+												value matches {true}
+											}
+										}
+									}
+									ELEMENT[at0016] occurrences matches {0..1} matches {    -- Description
+										value matches {
+											DV_TEXT matches {*}
+										}
+									}
+									ELEMENT[at0017] occurrences matches {0..1} matches {    -- Occurence
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0018,    -- Ever
+													at0019]    -- Currently
+												}
+											}
+										}
+									}
+								}
+							}
+							CLUSTER[at0054] occurrences matches {0..1} matches {    -- Simple head jerks/ movements
+								items cardinality matches {1..*; unordered} matches {
+									ELEMENT[at0008] occurrences matches {0..*} matches {    -- Tics
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0056,    -- Touching the shoulder with the chin
+													at0057]    -- Lifting the chin up
+												}
+											}
+										}
+									}
+									ELEMENT[at0014] occurrences matches {0..1} matches {    -- Age of onset
+										value matches {
+											DV_DURATION matches {
+												value matches {PY/|>=P0Y|}
+											}
+										}
+									}
+									ELEMENT[at0015] occurrences matches {0..1} matches {    -- Verified
+										value matches {
+											DV_BOOLEAN matches {
+												value matches {true}
+											}
+										}
+									}
+									ELEMENT[at0016] occurrences matches {0..1} matches {    -- Description
+										value matches {
+											DV_TEXT matches {*}
+										}
+									}
+									ELEMENT[at0017] occurrences matches {0..1} matches {    -- Occurence
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0018,    -- Ever
+													at0019]    -- Currently
+												}
+											}
+										}
+									}
+								}
+							}
+							CLUSTER[at0064] occurrences matches {0..1} matches {    -- Complex head jerks/ movements
+								items cardinality matches {1..*; unordered} matches {
+									ELEMENT[at0008] occurrences matches {0..*} matches {    -- Tics
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::at0066]    -- Throwing the head back, as if to get hair out of the eyes
+												}
+											}
+										}
+									}
+									ELEMENT[at0014] occurrences matches {0..1} matches {    -- Age of onset
+										value matches {
+											DV_DURATION matches {
+												value matches {PY/|>=P0Y|}
+											}
+										}
+									}
+									ELEMENT[at0015] occurrences matches {0..1} matches {    -- Verified
+										value matches {
+											DV_BOOLEAN matches {
+												value matches {true}
+											}
+										}
+									}
+									ELEMENT[at0016] occurrences matches {0..1} matches {    -- Description
+										value matches {
+											DV_TEXT matches {*}
+										}
+									}
+									ELEMENT[at0017] occurrences matches {0..1} matches {    -- Occurence
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0018,    -- Ever
+													at0019]    -- Currently
+												}
+											}
+										}
+									}
+								}
+							}
+							CLUSTER[at0073] occurrences matches {0..1} matches {    -- Simple shoulder jerks/movements
+								items cardinality matches {1..*; unordered} matches {
+									ELEMENT[at0008] occurrences matches {0..*} matches {    -- Tics
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::at0075]    -- Jerking of a shoulder
+												}
+											}
+										}
+									}
+									ELEMENT[at0014] occurrences matches {0..1} matches {    -- Age of onset
+										value matches {
+											DV_DURATION matches {
+												value matches {PY/|>=P0Y|}
+											}
+										}
+									}
+									ELEMENT[at0015] occurrences matches {0..1} matches {    -- Verified
+										value matches {
+											DV_BOOLEAN matches {
+												value matches {true}
+											}
+										}
+									}
+									ELEMENT[at0016] occurrences matches {0..1} matches {    -- Description
+										value matches {
+											DV_TEXT matches {*}
+										}
+									}
+									ELEMENT[at0017] occurrences matches {0..1} matches {    -- Occurence
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0018,    -- Ever
+													at0019]    -- Currently
+												}
+											}
+										}
+									}
+								}
+							}
+							CLUSTER[at0082] occurrences matches {0..1} matches {    -- Complex shoulder jerks/movements
+								items cardinality matches {1..*; unordered} matches {
+									ELEMENT[at0008] occurrences matches {0..*} matches {    -- Tics
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::at0084]    -- Shrugging the shoulder as if to say "I don't know."
+												}
+											}
+										}
+									}
+									ELEMENT[at0014] occurrences matches {0..1} matches {    -- Age of onset
+										value matches {
+											DV_DURATION matches {
+												value matches {PY/|>=P0Y|}
+											}
+										}
+									}
+									ELEMENT[at0015] occurrences matches {0..1} matches {    -- Verified
+										value matches {
+											DV_BOOLEAN matches {
+												value matches {true}
+											}
+										}
+									}
+									ELEMENT[at0016] occurrences matches {0..1} matches {    -- Description
+										value matches {
+											DV_TEXT matches {*}
+										}
+									}
+									ELEMENT[at0017] occurrences matches {0..1} matches {    -- Occurence
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0018,    -- Ever
+													at0019]    -- Currently
+												}
+											}
+										}
+									}
+								}
+							}
+							CLUSTER[at0091] occurrences matches {0..1} matches {    -- Simple arm or hand movements.
+								items cardinality matches {1..*; unordered} matches {
+									ELEMENT[at0008] occurrences matches {0..*} matches {    -- Tics
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0093,    -- Quickly flexing the arms or extending them
+													at0094,    -- Nail biting
+													at0095,    -- Poking with fingers
+													at0407]    -- Popping knuckles
+												}
+											}
+										}
+									}
+									ELEMENT[at0014] occurrences matches {0..1} matches {    -- Age of onset
+										value matches {
+											DV_DURATION matches {
+												value matches {PY/|>=P0Y|}
+											}
+										}
+									}
+									ELEMENT[at0015] occurrences matches {0..1} matches {    -- Verified
+										value matches {
+											DV_BOOLEAN matches {
+												value matches {true}
+											}
+										}
+									}
+									ELEMENT[at0016] occurrences matches {0..1} matches {    -- Description
+										value matches {
+											DV_TEXT matches {*}
+										}
+									}
+									ELEMENT[at0017] occurrences matches {0..1} matches {    -- Occurence
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0018,    -- Ever
+													at0019]    -- Currently
+												}
+											}
+										}
+									}
+								}
+							}
+							CLUSTER[at0102] occurrences matches {0..1} matches {    -- Complex arm or hand movements
+								items cardinality matches {1..*; unordered} matches {
+									ELEMENT[at0008] occurrences matches {0..*} matches {    -- Tics
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0104,    -- Passing hand through the hair in a combing like fashion
+													at0105,    -- Touching objects or others
+													at0106,    -- Pinching, or counting with fingers for no purpose
+													at0107,    -- Writing tics, such as writing over and over the same letter or word
+													at0108]    -- Pulling back on the pencil while writing
+												}
+											}
+										}
+									}
+									ELEMENT[at0014] occurrences matches {0..1} matches {    -- Age of onset
+										value matches {
+											DV_DURATION matches {
+												value matches {PY/|>=P0Y|}
+											}
+										}
+									}
+									ELEMENT[at0015] occurrences matches {0..1} matches {    -- Verified
+										value matches {
+											DV_BOOLEAN matches {
+												value matches {true}
+											}
+										}
+									}
+									ELEMENT[at0016] occurrences matches {0..1} matches {    -- Description
+										value matches {
+											DV_TEXT matches {*}
+										}
+									}
+									ELEMENT[at0017] occurrences matches {0..1} matches {    -- Occurence
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0018,    -- Ever
+													at0019]    -- Currently
+												}
+											}
+										}
+									}
+								}
+							}
+							CLUSTER[at0115] occurrences matches {0..1} matches {    -- Simple leg, foot or toe movements
+								items cardinality matches {1..*; unordered} matches {
+									ELEMENT[at0008] occurrences matches {0..*} matches {    -- Tics
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0117,    -- Kicking
+													at0118,    -- Skipping
+													at0119,    -- Knee-bending
+													at0120,    -- Flexing or extension of the ankles
+													at0121]    -- Shaking, stomping or tapping the foot
+												}
+											}
+										}
+									}
+									ELEMENT[at0014] occurrences matches {0..1} matches {    -- Age of onset
+										value matches {
+											DV_DURATION matches {
+												value matches {PY/|>=P0Y|}
+											}
+										}
+									}
+									ELEMENT[at0015] occurrences matches {0..1} matches {    -- Verified
+										value matches {
+											DV_BOOLEAN matches {
+												value matches {true}
+											}
+										}
+									}
+									ELEMENT[at0016] occurrences matches {0..1} matches {    -- Description
+										value matches {
+											DV_TEXT matches {*}
+										}
+									}
+									ELEMENT[at0017] occurrences matches {0..1} matches {    -- Occurence
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0018,    -- Ever
+													at0019]    -- Currently
+												}
+											}
+										}
+									}
+								}
+							}
+							CLUSTER[at0128] occurrences matches {0..1} matches {    -- Complex leg, foot or toe movements
+								items cardinality matches {1..*; unordered} matches {
+									ELEMENT[at0008] occurrences matches {0..*} matches {    -- Tics
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0130,    -- Taking a step forward and two steps backward
+													at0131,    -- Squatting
+													at0408]    -- Deep knee-bending
+												}
+											}
+										}
+									}
+									ELEMENT[at0014] occurrences matches {0..1} matches {    -- Age of onset
+										value matches {
+											DV_DURATION matches {
+												value matches {PY/|>=P0Y|}
+											}
+										}
+									}
+									ELEMENT[at0015] occurrences matches {0..1} matches {    -- Verified
+										value matches {
+											DV_BOOLEAN matches {
+												value matches {true}
+											}
+										}
+									}
+									ELEMENT[at0016] occurrences matches {0..1} matches {    -- Description
+										value matches {
+											DV_TEXT matches {*}
+										}
+									}
+									ELEMENT[at0017] occurrences matches {0..1} matches {    -- Occurence
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0018,    -- Ever
+													at0019]    -- Currently
+												}
+											}
+										}
+									}
+								}
+							}
+							CLUSTER[at0138] occurrences matches {0..1} matches {    -- Abdominal/trunk/pelvis movements
+								items cardinality matches {1..*; unordered} matches {
+									ELEMENT[at0008] occurrences matches {0..*} matches {    -- Tics
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0140,    -- Tensing the abdomen
+													at0141]    -- Tensing the buttocks
+												}
+											}
+										}
+									}
+									ELEMENT[at0014] occurrences matches {0..1} matches {    -- Age of onset
+										value matches {
+											DV_DURATION matches {
+												value matches {PY/|>=P0Y|}
+											}
+										}
+									}
+									ELEMENT[at0015] occurrences matches {0..1} matches {    -- Verified
+										value matches {
+											DV_BOOLEAN matches {
+												value matches {true}
+											}
+										}
+									}
+									ELEMENT[at0016] occurrences matches {0..1} matches {    -- Description
+										value matches {
+											DV_TEXT matches {*}
+										}
+									}
+									ELEMENT[at0017] occurrences matches {0..1} matches {    -- Occurence
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0018,    -- Ever
+													at0019]    -- Currently
+												}
+											}
+										}
+									}
+								}
+							}
+							CLUSTER[at0148] occurrences matches {0..1} matches {    -- Other simple motor tics
+								items cardinality matches {1..*; unordered} matches {
+									ELEMENT[at0149] occurrences matches {0..*} matches {    -- *Symptom
+										value matches {
+											DV_TEXT matches {*}
+										}
+									}
+									ELEMENT[at0014] occurrences matches {0..1} matches {    -- Age of onset
+										value matches {
+											DV_DURATION matches {
+												value matches {PY/|>=P0Y|}
+											}
+										}
+									}
+									ELEMENT[at0015] occurrences matches {0..1} matches {    -- Verified
+										value matches {
+											DV_BOOLEAN matches {
+												value matches {true}
+											}
+										}
+									}
+									ELEMENT[at0016] occurrences matches {0..1} matches {    -- Description
+										value matches {
+											DV_TEXT matches {*}
+										}
+									}
+									ELEMENT[at0017] occurrences matches {0..1} matches {    -- Occurence
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0018,    -- Ever
+													at0019]    -- Currently
+												}
+											}
+										}
+									}
+								}
+							}
+							CLUSTER[at0156] occurrences matches {0..1} matches {    -- Other complex motor tics
+								items cardinality matches {1..*; unordered} matches {
+									ELEMENT[at0008] occurrences matches {0..1} matches {    -- Tics
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::at0158]    -- Touching
+												}
+											}
+										}
+									}
+									ELEMENT[at0014] occurrences matches {0..1} matches {    -- Age of onset
+										value matches {
+											DV_DURATION matches {
+												value matches {PY/|>=P0Y|}
+											}
+										}
+									}
+									ELEMENT[at0015] occurrences matches {0..1} matches {    -- Verified
+										value matches {
+											DV_BOOLEAN matches {
+												value matches {true}
+											}
+										}
+									}
+									ELEMENT[at0016] occurrences matches {0..1} matches {    -- Description
+										value matches {
+											DV_TEXT matches {*}
+										}
+									}
+									ELEMENT[at0017] occurrences matches {0..1} matches {    -- Occurence
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0018,    -- Ever
+													at0019]    -- Currently
+												}
+											}
+										}
+									}
+								}
+							}
+							CLUSTER[at0165] occurrences matches {0..1} matches {    -- Andre komplekse motoriske tics 2
+								items cardinality matches {1..*; unordered} matches {
+									ELEMENT[at0008] occurrences matches {0..1} matches {    -- Tics
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::at0167]    -- Tapping
+												}
+											}
+										}
+									}
+									ELEMENT[at0014] occurrences matches {0..1} matches {    -- Age of onset
+										value matches {
+											DV_DURATION matches {
+												value matches {PY/|>=P0Y|}
+											}
+										}
+									}
+									ELEMENT[at0015] occurrences matches {0..1} matches {    -- Verified
+										value matches {
+											DV_BOOLEAN matches {
+												value matches {true}
+											}
+										}
+									}
+									ELEMENT[at0016] occurrences matches {0..1} matches {    -- Description
+										value matches {
+											DV_TEXT matches {*}
+										}
+									}
+									ELEMENT[at0017] occurrences matches {0..1} matches {    -- Occurence
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0018,    -- Ever
+													at0019]    -- Currently
+												}
+											}
+										}
+									}
+								}
+							}
+							CLUSTER[at0174] occurrences matches {0..1} matches {    -- Andre komplekse motoriske tics 3
+								items cardinality matches {1..*; unordered} matches {
+									ELEMENT[at0008] occurrences matches {0..1} matches {    -- Tics
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::at0176]    -- Picking
+												}
+											}
+										}
+									}
+									ELEMENT[at0014] occurrences matches {0..1} matches {    -- Age of onset
+										value matches {
+											DV_DURATION matches {
+												value matches {PY/|>=P0Y|}
+											}
+										}
+									}
+									ELEMENT[at0015] occurrences matches {0..1} matches {    -- Verified
+										value matches {
+											DV_BOOLEAN matches {
+												value matches {true}
+											}
+										}
+									}
+									ELEMENT[at0016] occurrences matches {0..1} matches {    -- Description
+										value matches {
+											DV_TEXT matches {*}
+										}
+									}
+									ELEMENT[at0017] occurrences matches {0..1} matches {    -- Occurence
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0018,    -- Ever
+													at0019]    -- Currently
+												}
+											}
+										}
+									}
+								}
+							}
+							CLUSTER[at0183] occurrences matches {0..1} matches {    -- Andre komplekse motoriske tics 4
+								items cardinality matches {1..*; unordered} matches {
+									ELEMENT[at0008] occurrences matches {0..1} matches {    -- Tics
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::at0185]    -- Evening-up
+												}
+											}
+										}
+									}
+									ELEMENT[at0014] occurrences matches {0..1} matches {    -- Age of onset
+										value matches {
+											DV_DURATION matches {
+												value matches {PY/|>=P0Y|}
+											}
+										}
+									}
+									ELEMENT[at0015] occurrences matches {0..1} matches {    -- Verified
+										value matches {
+											DV_BOOLEAN matches {
+												value matches {true}
+											}
+										}
+									}
+									ELEMENT[at0016] occurrences matches {0..1} matches {    -- Description
+										value matches {
+											DV_TEXT matches {*}
+										}
+									}
+									ELEMENT[at0017] occurrences matches {0..1} matches {    -- Occurence
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0018,    -- Ever
+													at0019]    -- Currently
+												}
+											}
+										}
+									}
+								}
+							}
+							CLUSTER[at0192] occurrences matches {0..1} matches {    -- Andre komplekse motoriske tics 5
+								items cardinality matches {1..*; unordered} matches {
+									ELEMENT[at0008] occurrences matches {0..1} matches {    -- Tics
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::at0194]    -- Reckless behaviours
+												}
+											}
+										}
+									}
+									ELEMENT[at0014] occurrences matches {0..1} matches {    -- Age of onset
+										value matches {
+											DV_DURATION matches {
+												value matches {PY/|>=P0Y|}
+											}
+										}
+									}
+									ELEMENT[at0015] occurrences matches {0..1} matches {    -- Verified
+										value matches {
+											DV_BOOLEAN matches {
+												value matches {true}
+											}
+										}
+									}
+									ELEMENT[at0016] occurrences matches {0..1} matches {    -- Description
+										value matches {
+											DV_TEXT matches {*}
+										}
+									}
+									ELEMENT[at0017] occurrences matches {0..1} matches {    -- Occurence
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0018,    -- Ever
+													at0019]    -- Currently
+												}
+											}
+										}
+									}
+								}
+							}
+							CLUSTER[at0201] occurrences matches {0..1} matches {    -- Andre komplekse motoriske tics 6
+								items cardinality matches {1..*; unordered} matches {
+									ELEMENT[at0008] occurrences matches {0..1} matches {    -- Tics
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::at0203]    -- Stimulus-dependent tics
+												}
+											}
+										}
+									}
+									ELEMENT[at0014] occurrences matches {0..1} matches {    -- Age of onset
+										value matches {
+											DV_DURATION matches {
+												value matches {PY/|>=P0Y|}
+											}
+										}
+									}
+									ELEMENT[at0015] occurrences matches {0..1} matches {    -- Verified
+										value matches {
+											DV_BOOLEAN matches {
+												value matches {true}
+											}
+										}
+									}
+									ELEMENT[at0016] occurrences matches {0..1} matches {    -- Description
+										value matches {
+											DV_TEXT matches {*}
+										}
+									}
+									ELEMENT[at0017] occurrences matches {0..1} matches {    -- Occurence
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0018,    -- Ever
+													at0019]    -- Currently
+												}
+											}
+										}
+									}
+								}
+							}
+							CLUSTER[at0210] occurrences matches {0..1} matches {    -- Andre komplekse motoriske tics 7
+								items cardinality matches {1..*; unordered} matches {
+									ELEMENT[at0008] occurrences matches {0..1} matches {    -- Tics
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::at0212]    -- Rude/obscene gestures; obscene finger/hand gestures
+												}
+											}
+										}
+									}
+									ELEMENT[at0014] occurrences matches {0..1} matches {    -- Age of onset
+										value matches {
+											DV_DURATION matches {
+												value matches {PY/|>=P0Y|}
+											}
+										}
+									}
+									ELEMENT[at0015] occurrences matches {0..1} matches {    -- Verified
+										value matches {
+											DV_BOOLEAN matches {
+												value matches {true}
+											}
+										}
+									}
+									ELEMENT[at0016] occurrences matches {0..1} matches {    -- Description
+										value matches {
+											DV_TEXT matches {*}
+										}
+									}
+									ELEMENT[at0017] occurrences matches {0..1} matches {    -- Occurence
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0018,    -- Ever
+													at0019]    -- Currently
+												}
+											}
+										}
+									}
+								}
+							}
+							CLUSTER[at0219] occurrences matches {0..1} matches {    -- Andre komplekse motoriske tics 8
+								items cardinality matches {1..*; unordered} matches {
+									ELEMENT[at0008] occurrences matches {0..1} matches {    -- Tics
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::at0221]    -- Unusual postures
+												}
+											}
+										}
+									}
+									ELEMENT[at0014] occurrences matches {0..1} matches {    -- Age of onset
+										value matches {
+											DV_DURATION matches {
+												value matches {PY/|>=P0Y|}
+											}
+										}
+									}
+									ELEMENT[at0015] occurrences matches {0..1} matches {    -- Verified
+										value matches {
+											DV_BOOLEAN matches {
+												value matches {true}
+											}
+										}
+									}
+									ELEMENT[at0016] occurrences matches {0..1} matches {    -- Description
+										value matches {
+											DV_TEXT matches {*}
+										}
+									}
+									ELEMENT[at0017] occurrences matches {0..1} matches {    -- Occurence
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0018,    -- Ever
+													at0019]    -- Currently
+												}
+											}
+										}
+									}
+								}
+							}
+							CLUSTER[at0228] occurrences matches {0..1} matches {    -- Andre komplekse motoriske tics 9
+								items cardinality matches {1..*; unordered} matches {
+									ELEMENT[at0008] occurrences matches {0..1} matches {    -- Tics
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::at0230]    -- Bending or gyrating, such as bending over
+												}
+											}
+										}
+									}
+									ELEMENT[at0014] occurrences matches {0..1} matches {    -- Age of onset
+										value matches {
+											DV_DURATION matches {
+												value matches {PY/|>=P0Y|}
+											}
+										}
+									}
+									ELEMENT[at0015] occurrences matches {0..1} matches {    -- Verified
+										value matches {
+											DV_BOOLEAN matches {
+												value matches {true}
+											}
+										}
+									}
+									ELEMENT[at0016] occurrences matches {0..1} matches {    -- Description
+										value matches {
+											DV_TEXT matches {*}
+										}
+									}
+									ELEMENT[at0017] occurrences matches {0..1} matches {    -- Occurence
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0018,    -- Ever
+													at0019]    -- Currently
+												}
+											}
+										}
+									}
+								}
+							}
+							CLUSTER[at0237] occurrences matches {0..1} matches {    -- Andre komplekse motoriske tics 10
+								items cardinality matches {1..*; unordered} matches {
+									ELEMENT[at0008] occurrences matches {0..1} matches {    -- Tics
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::at0239]    -- Rotating or spinning on one foot
+												}
+											}
+										}
+									}
+									ELEMENT[at0014] occurrences matches {0..1} matches {    -- Age of onset
+										value matches {
+											DV_DURATION matches {
+												value matches {PY/|>=P0Y|}
+											}
+										}
+									}
+									ELEMENT[at0015] occurrences matches {0..1} matches {    -- Verified
+										value matches {
+											DV_BOOLEAN matches {
+												value matches {true}
+											}
+										}
+									}
+									ELEMENT[at0016] occurrences matches {0..1} matches {    -- Description
+										value matches {
+											DV_TEXT matches {*}
+										}
+									}
+									ELEMENT[at0017] occurrences matches {0..1} matches {    -- Occurence
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0018,    -- Ever
+													at0019]    -- Currently
+												}
+											}
+										}
+									}
+								}
+							}
+							CLUSTER[at0246] occurrences matches {0..1} matches {    -- Andre komplekse motoriske tics 11
+								items cardinality matches {1..*; unordered} matches {
+									ELEMENT[at0008] occurrences matches {0..1} matches {    -- Tics
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::at0248]    -- Copying the action of another (echopraxia)
+												}
+											}
+										}
+									}
+									ELEMENT[at0014] occurrences matches {0..1} matches {    -- Age of onset
+										value matches {
+											DV_DURATION matches {
+												value matches {PY/|>=P0Y|}
+											}
+										}
+									}
+									ELEMENT[at0015] occurrences matches {0..1} matches {    -- Verified
+										value matches {
+											DV_BOOLEAN matches {
+												value matches {true}
+											}
+										}
+									}
+									ELEMENT[at0016] occurrences matches {0..1} matches {    -- Description
+										value matches {
+											DV_TEXT matches {*}
+										}
+									}
+									ELEMENT[at0017] occurrences matches {0..1} matches {    -- Occurence
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0018,    -- Ever
+													at0019]    -- Currently
+												}
+											}
+										}
+									}
+								}
+							}
+							CLUSTER[at0255] occurrences matches {0..1} matches {    -- Andre komplekse motoriske tics 12
+								items cardinality matches {1..*; unordered} matches {
+									ELEMENT[at0008] occurrences matches {0..1} matches {    -- Tics
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::at0257]    -- *Sudden tic-like impulsive behaviors. BESKRIV
+												}
+											}
+										}
+									}
+									ELEMENT[at0014] occurrences matches {0..1} matches {    -- Age of onset
+										value matches {
+											DV_DURATION matches {
+												value matches {PY/|>=P0Y|}
+											}
+										}
+									}
+									ELEMENT[at0015] occurrences matches {0..1} matches {    -- Verified
+										value matches {
+											DV_BOOLEAN matches {
+												value matches {true}
+											}
+										}
+									}
+									ELEMENT[at0016] occurrences matches {0..1} matches {    -- Description
+										value matches {
+											DV_TEXT matches {*}
+										}
+									}
+									ELEMENT[at0017] occurrences matches {0..1} matches {    -- Occurence
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0018,    -- Ever
+													at0019]    -- Currently
+												}
+											}
+										}
+									}
+								}
+							}
+							CLUSTER[at0264] occurrences matches {0..1} matches {    -- Andre komplekse motoriske tics 13
+								items cardinality matches {1..*; unordered} matches {
+									ELEMENT[at0008] occurrences matches {0..1} matches {    -- Tics
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::at0266]    -- *Tic-like behaviors that could injure/mutilate others. BESKRIV
+												}
+											}
+										}
+									}
+									ELEMENT[at0014] occurrences matches {0..1} matches {    -- Age of onset
+										value matches {
+											DV_DURATION matches {
+												value matches {PY/|>=P0Y|}
+											}
+										}
+									}
+									ELEMENT[at0015] occurrences matches {0..1} matches {    -- Verified
+										value matches {
+											DV_BOOLEAN matches {
+												value matches {true}
+											}
+										}
+									}
+									ELEMENT[at0016] occurrences matches {0..1} matches {    -- Description
+										value matches {
+											DV_TEXT matches {*}
+										}
+									}
+									ELEMENT[at0017] occurrences matches {0..1} matches {    -- Occurence
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0018,    -- Ever
+													at0019]    -- Currently
+												}
+											}
+										}
+									}
+								}
+							}
+							CLUSTER[at0273] occurrences matches {0..1} matches {    -- Andre komplekse motoriske tics 14
+								items cardinality matches {1..*; unordered} matches {
+									ELEMENT[at0008] occurrences matches {0..1} matches {    -- Tics
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::at0275]    -- *Self-injurious tic-like behavior(s) BESKRIV
+												}
+											}
+										}
+									}
+									ELEMENT[at0014] occurrences matches {0..1} matches {    -- Age of onset
+										value matches {
+											DV_DURATION matches {
+												value matches {PY/|>=P0Y|}
+											}
+										}
+									}
+									ELEMENT[at0015] occurrences matches {0..1} matches {    -- Verified
+										value matches {
+											DV_BOOLEAN matches {
+												value matches {true}
+											}
+										}
+									}
+									ELEMENT[at0016] occurrences matches {0..1} matches {    -- Description
+										value matches {
+											DV_TEXT matches {*}
+										}
+									}
+									ELEMENT[at0017] occurrences matches {0..1} matches {    -- Occurence
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0018,    -- Ever
+													at0019]    -- Currently
+												}
+											}
+										}
+									}
+								}
+							}
+							CLUSTER[at0282] occurrences matches {0..1} matches {    -- Other involuntary and apparently purposeless motor tics
+								items cardinality matches {1..*; unordered} matches {
+									ELEMENT[at0008] occurrences matches {0..*} matches {    -- Tics
+										value matches {
+											DV_TEXT matches {*}
+										}
+									}
+									ELEMENT[at0014] occurrences matches {0..1} matches {    -- Age of onset
+										value matches {
+											DV_DURATION matches {
+												value matches {PY/|>=P0Y|}
+											}
+										}
+									}
+									ELEMENT[at0015] occurrences matches {0..1} matches {    -- Verified
+										value matches {
+											DV_BOOLEAN matches {
+												value matches {true}
+											}
+										}
+									}
+									ELEMENT[at0016] occurrences matches {0..1} matches {    -- Description
+										value matches {
+											DV_TEXT matches {*}
+										}
+									}
+									ELEMENT[at0017] occurrences matches {0..1} matches {    -- Occurence
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0018,    -- Ever
+													at0019]    -- Currently
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			CLUSTER[at0290] occurrences matches {0..1} matches {    -- Fonetiske (vokale) tics
+				items cardinality matches {1..*; unordered} matches {
+					ELEMENT[at0291] occurrences matches {0..1} matches {    -- Age of first vocal tics
+						value matches {
+							DV_COUNT matches {
+								magnitude matches {|>=0|}
+							}
+						}
+					}
+					ELEMENT[at0292] occurrences matches {0..1} matches {    -- First vocal tic
+						value matches {
+							DV_TEXT matches {*}
+						}
+					}
+					ELEMENT[at0293] occurrences matches {0..1} matches {    -- Was tic onset sudden or gradual?
+						value matches {
+							DV_TEXT matches {*}
+						}
+					}
+					ELEMENT[at0017] occurrences matches {0..1} matches {    -- Occurence
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0018,    -- Ever
+									at0019]    -- Currently
+								}
+							}
+						}
+					}
+					ELEMENT[at0294] occurrences matches {0..1} matches {    -- Age of worst vocal tics?
+						value matches {
+							DV_COUNT matches {*}
+						}
+					}
+					CLUSTER[at0295] occurrences matches {0..*} matches {    -- Phonic tic symptom checklist
+						items cardinality matches {1..*; unordered} matches {
+							CLUSTER[at0296] occurrences matches {0..*} matches {    -- Fonetiske tics 1
+								items cardinality matches {1..*; unordered} matches {
+									ELEMENT[at0008] occurrences matches {0..1} matches {    -- Tics
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::at0298]    -- Coughing
+												}
+											}
+										}
+									}
+									ELEMENT[at0014] occurrences matches {0..1} matches {    -- Age of onset
+										value matches {
+											DV_DURATION matches {
+												value matches {PY/|>=P0Y|}
+											}
+										}
+									}
+									ELEMENT[at0015] occurrences matches {0..1} matches {    -- Verified
+										value matches {
+											DV_BOOLEAN matches {
+												value matches {true}
+											}
+										}
+									}
+									ELEMENT[at0016] occurrences matches {0..1} matches {    -- Description
+										value matches {
+											DV_TEXT matches {*}
+										}
+									}
+								}
+							}
+							CLUSTER[at0305] occurrences matches {0..*} matches {    -- Fonetiske tics 2
+								items cardinality matches {1..*; unordered} matches {
+									ELEMENT[at0008] occurrences matches {0..1} matches {    -- Tics
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::at0307]    -- Throat clearing
+												}
+											}
+										}
+									}
+									ELEMENT[at0014] occurrences matches {0..1} matches {    -- Age of onset
+										value matches {
+											DV_DURATION matches {
+												value matches {PY/|>=P0Y|}
+											}
+										}
+									}
+									ELEMENT[at0015] occurrences matches {0..1} matches {    -- Verified
+										value matches {
+											DV_BOOLEAN matches {
+												value matches {true}
+											}
+										}
+									}
+									ELEMENT[at0016] occurrences matches {0..1} matches {    -- Description
+										value matches {
+											DV_TEXT matches {*}
+										}
+									}
+									ELEMENT[at0017] occurrences matches {0..1} matches {    -- Occurence
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0018,    -- Ever
+													at0019]    -- Currently
+												}
+											}
+										}
+									}
+								}
+							}
+							CLUSTER[at0314] occurrences matches {0..*} matches {    -- Fonetiske tics 3
+								items cardinality matches {1..*; unordered} matches {
+									ELEMENT[at0008] occurrences matches {0..1} matches {    -- Tics
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::at0316]    -- Sniffing
+												}
+											}
+										}
+									}
+									ELEMENT[at0014] occurrences matches {0..1} matches {    -- Age of onset
+										value matches {
+											DV_DURATION matches {
+												value matches {PY/|>=P0Y|}
+											}
+										}
+									}
+									ELEMENT[at0015] occurrences matches {0..1} matches {    -- Verified
+										value matches {
+											DV_BOOLEAN matches {
+												value matches {true}
+											}
+										}
+									}
+									ELEMENT[at0016] occurrences matches {0..1} matches {    -- Description
+										value matches {
+											DV_TEXT matches {*}
+										}
+									}
+									ELEMENT[at0017] occurrences matches {0..1} matches {    -- Occurence
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0018,    -- Ever
+													at0019]    -- Currently
+												}
+											}
+										}
+									}
+								}
+							}
+							CLUSTER[at0323] occurrences matches {0..*} matches {    -- Fonetiske tics 4
+								items cardinality matches {1..*; unordered} matches {
+									ELEMENT[at0008] occurrences matches {0..1} matches {    -- Tics
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::at0325]    -- Whistling
+												}
+											}
+										}
+									}
+									ELEMENT[at0014] occurrences matches {0..1} matches {    -- Age of onset
+										value matches {
+											DV_DURATION matches {
+												value matches {PY/|>=P0Y|}
+											}
+										}
+									}
+									ELEMENT[at0015] occurrences matches {0..1} matches {    -- Verified
+										value matches {
+											DV_BOOLEAN matches {
+												value matches {true}
+											}
+										}
+									}
+									ELEMENT[at0016] occurrences matches {0..1} matches {    -- Description
+										value matches {
+											DV_TEXT matches {*}
+										}
+									}
+									ELEMENT[at0017] occurrences matches {0..1} matches {    -- Occurence
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0018,    -- Ever
+													at0019]    -- Currently
+												}
+											}
+										}
+									}
+								}
+							}
+							CLUSTER[at0332] occurrences matches {0..*} matches {    -- Fonetiske tics 5
+								items cardinality matches {1..*; unordered} matches {
+									ELEMENT[at0008] occurrences matches {0..1} matches {    -- Tics
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::at0334]    -- Animal or bird noises
+												}
+											}
+										}
+									}
+									ELEMENT[at0014] occurrences matches {0..1} matches {    -- Age of onset
+										value matches {
+											DV_DURATION matches {
+												value matches {PY/|>=P0Y|}
+											}
+										}
+									}
+									ELEMENT[at0015] occurrences matches {0..1} matches {    -- Verified
+										value matches {
+											DV_BOOLEAN matches {
+												value matches {true}
+											}
+										}
+									}
+									ELEMENT[at0016] occurrences matches {0..1} matches {    -- Description
+										value matches {
+											DV_TEXT matches {*}
+										}
+									}
+									ELEMENT[at0017] occurrences matches {0..1} matches {    -- Occurence
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0018,    -- Ever
+													at0019]    -- Currently
+												}
+											}
+										}
+									}
+								}
+							}
+							CLUSTER[at0341] occurrences matches {0..*} matches {    -- Fonetiske tics 6
+								items cardinality matches {1..*; unordered} matches {
+									ELEMENT[at0008] occurrences matches {0..*} matches {    -- Tics
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::at0343]    -- Other simple phonic tics.
+												}
+											}
+										}
+									}
+									ELEMENT[at0014] occurrences matches {0..1} matches {    -- Age of onset
+										value matches {
+											DV_DURATION matches {
+												value matches {PY/|>=P0Y|}
+											}
+										}
+									}
+									ELEMENT[at0015] occurrences matches {0..1} matches {    -- Verified
+										value matches {
+											DV_BOOLEAN matches {
+												value matches {true}
+											}
+										}
+									}
+									ELEMENT[at0016] occurrences matches {0..1} matches {    -- Description
+										value matches {
+											DV_TEXT matches {*}
+										}
+									}
+									ELEMENT[at0017] occurrences matches {0..1} matches {    -- Occurence
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0018,    -- Ever
+													at0019]    -- Currently
+												}
+											}
+										}
+									}
+								}
+							}
+							CLUSTER[at0350] occurrences matches {0..*} matches {    -- Fonetiske tics 7
+								items cardinality matches {1..*; unordered} matches {
+									ELEMENT[at0008] occurrences matches {0..1} matches {    -- Tics
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::at0352]    -- *Syllables.
+												}
+											}
+										}
+									}
+									ELEMENT[at0014] occurrences matches {0..1} matches {    -- Age of onset
+										value matches {
+											DV_DURATION matches {
+												value matches {PY/|>=P0Y|}
+											}
+										}
+									}
+									ELEMENT[at0015] occurrences matches {0..1} matches {    -- Verified
+										value matches {
+											DV_BOOLEAN matches {
+												value matches {true}
+											}
+										}
+									}
+									ELEMENT[at0016] occurrences matches {0..1} matches {    -- Description
+										value matches {
+											DV_TEXT matches {*}
+										}
+									}
+									ELEMENT[at0017] occurrences matches {0..1} matches {    -- Occurence
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0018,    -- Ever
+													at0019]    -- Currently
+												}
+											}
+										}
+									}
+								}
+							}
+							CLUSTER[at0359] occurrences matches {0..*} matches {    -- Fonetiske tics 8
+								items cardinality matches {1..*; unordered} matches {
+									ELEMENT[at0008] occurrences matches {0..1} matches {    -- Tics
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::at0361]    -- *Words. List opp
+												}
+											}
+										}
+									}
+									ELEMENT[at0014] occurrences matches {0..1} matches {    -- Age of onset
+										value matches {
+											DV_DURATION matches {
+												value matches {PY/|>=P0Y|}
+											}
+										}
+									}
+									ELEMENT[at0015] occurrences matches {0..1} matches {    -- Verified
+										value matches {
+											DV_BOOLEAN matches {
+												value matches {true}
+											}
+										}
+									}
+									ELEMENT[at0016] occurrences matches {0..1} matches {    -- Description
+										value matches {
+											DV_TEXT matches {*}
+										}
+									}
+									ELEMENT[at0017] occurrences matches {0..1} matches {    -- Occurence
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0018,    -- Ever
+													at0019]    -- Currently
+												}
+											}
+										}
+									}
+								}
+							}
+							CLUSTER[at0368] occurrences matches {0..*} matches {    -- Fonetiske tics 9
+								items cardinality matches {1..*; unordered} matches {
+									ELEMENT[at0008] occurrences matches {0..1} matches {    -- Tics
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::at0370]    -- *Rude or obscene words or phrases. List opp
+												}
+											}
+										}
+									}
+									ELEMENT[at0014] occurrences matches {0..1} matches {    -- Age of onset
+										value matches {
+											DV_DURATION matches {
+												value matches {PY/|>=P0Y|}
+											}
+										}
+									}
+									ELEMENT[at0015] occurrences matches {0..1} matches {    -- Verified
+										value matches {
+											DV_BOOLEAN matches {
+												value matches {true}
+											}
+										}
+									}
+									ELEMENT[at0016] occurrences matches {0..1} matches {    -- Description
+										value matches {
+											DV_TEXT matches {*}
+										}
+									}
+									ELEMENT[at0017] occurrences matches {0..1} matches {    -- Occurence
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0018,    -- Ever
+													at0019]    -- Currently
+												}
+											}
+										}
+									}
+								}
+							}
+							CLUSTER[at0377] occurrences matches {0..*} matches {    -- Fonetiske tics 10
+								items cardinality matches {1..*; unordered} matches {
+									ELEMENT[at0008] occurrences matches {0..1} matches {    -- Tics
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::at0379]    -- Repeating what someone else said
+												}
+											}
+										}
+									}
+									ELEMENT[at0014] occurrences matches {0..1} matches {    -- Age of onset
+										value matches {
+											DV_DURATION matches {
+												value matches {PY/|>=P0Y|}
+											}
+										}
+									}
+									ELEMENT[at0015] occurrences matches {0..1} matches {    -- Verified
+										value matches {
+											DV_BOOLEAN matches {
+												value matches {true}
+											}
+										}
+									}
+									ELEMENT[at0016] occurrences matches {0..1} matches {    -- Description
+										value matches {
+											DV_TEXT matches {*}
+										}
+									}
+									ELEMENT[at0017] occurrences matches {0..1} matches {    -- Occurence
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0018,    -- Ever
+													at0019]    -- Currently
+												}
+											}
+										}
+									}
+								}
+							}
+							CLUSTER[at0386] occurrences matches {0..*} matches {    -- Fonetiske tics 11
+								items cardinality matches {1..*; unordered} matches {
+									ELEMENT[at0008] occurrences matches {0..1} matches {    -- Tics
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::at0388]    -- Repeating something the patient said over and over again (palilalia)
+												}
+											}
+										}
+									}
+									ELEMENT[at0014] occurrences matches {0..1} matches {    -- Age of onset
+										value matches {
+											DV_DURATION matches {
+												value matches {PY/|>=P0Y|}
+											}
+										}
+									}
+									ELEMENT[at0015] occurrences matches {0..1} matches {    -- Verified
+										value matches {
+											DV_BOOLEAN matches {
+												value matches {true}
+											}
+										}
+									}
+									ELEMENT[at0016] occurrences matches {0..1} matches {    -- Description
+										value matches {
+											DV_TEXT matches {*}
+										}
+									}
+									ELEMENT[at0017] occurrences matches {0..1} matches {    -- Occurence
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0018,    -- Ever
+													at0019]    -- Currently
+												}
+											}
+										}
+									}
+								}
+							}
+							CLUSTER[at0404] occurrences matches {0..1} matches {    -- Fonetiske tics 12
+								items cardinality matches {1..*; unordered} matches {
+									ELEMENT[at0008] occurrences matches {0..*} matches {    -- Tics
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::at0406]    -- Other tic-like speech problems
+												}
+											}
+										}
+									}
+									ELEMENT[at0014] occurrences matches {0..1} matches {    -- Age of onset
+										value matches {
+											DV_DURATION matches {
+												value matches {PY/|>=P0Y|}
+											}
+										}
+									}
+									ELEMENT[at0015] occurrences matches {0..1} matches {    -- Verified
+										value matches {
+											DV_BOOLEAN matches {
+												value matches {true}
+											}
+										}
+									}
+									ELEMENT[at0016] occurrences matches {0..1} matches {    -- Description
+										value matches {
+											DV_TEXT matches {*}
+										}
+									}
+									ELEMENT[at0017] occurrences matches {0..1} matches {    -- Occurence
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0018,    -- Ever
+													at0019]    -- Currently
+												}
+											}
+										}
+									}
+								}
+							}
+							CLUSTER[at0395] occurrences matches {0..1} matches {    -- Hva gjør vi med denne?
+								items cardinality matches {1..*; unordered} matches {
+									ELEMENT[at0008] occurrences matches {0..1} matches {    -- Tics
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::at0397]    -- * Bør denne være åpen? Describe any other patterns or sequences of phonic tic behaviors
+												}
+											}
+										}
+									}
+									ELEMENT[at0014] occurrences matches {0..1} matches {    -- Age of onset
+										value matches {
+											DV_DURATION matches {
+												value matches {PY/|>=P0Y|}
+											}
+										}
+									}
+									ELEMENT[at0015] occurrences matches {0..1} matches {    -- Verified
+										value matches {
+											DV_BOOLEAN matches {
+												value matches {true}
+											}
+										}
+									}
+									ELEMENT[at0016] occurrences matches {0..1} matches {    -- Description
+										value matches {
+											DV_TEXT matches {*}
+										}
+									}
+									ELEMENT[at0017] occurrences matches {0..1} matches {    -- Occurence
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0018,    -- Ever
+													at0019]    -- Currently
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Yale Global Tic Severity Scale - checklist">
+					description = <"Checklist used as a base for the score of tic severity.">
+				>
+				["at0001"] = <
+					text = <"Motor tic">
+					description = <"">
+				>
+				["at0002"] = <
+					text = <"Age of first motor tics?">
+					description = <"Number of years old of first motor tics.">
+				>
+				["at0003"] = <
+					text = <"Describe first motor tic">
+					description = <"Description of the first motor tic.">
+				>
+				["at0004"] = <
+					text = <"Was tic onset sudden or gradual?">
+					description = <"Describe if tic onset was sudden or gradual.">
+				>
+				["at0005"] = <
+					text = <"Age of worst motor tics?">
+					description = <"Number of years when worst motor tics.">
+				>
+				["at0006"] = <
+					text = <"Motor tic symptom checklist">
+					description = <"The patient has experienced, or others have noticed, involuntary and apparently purposeless bouts of:">
+				>
+				["at0007"] = <
+					text = <"Simple eye movements">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"Tics">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"Eye blinking">
+					description = <"">
+				>
+				["at0010"] = <
+					text = <"Squinting">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"A quick turning of the eyes">
+					description = <"">
+				>
+				["at0012"] = <
+					text = <"Rolling of the eyes to one side">
+					description = <"">
+				>
+				["at0013"] = <
+					text = <"Opening eyes wide very briefly">
+					description = <"">
+				>
+				["at0014"] = <
+					text = <"Age of onset">
+					description = <"Age of onset (in years) patient has had that behaviour.">
+				>
+				["at0015"] = <
+					text = <"Verified">
+					description = <"The tics is verified by a clinician.">
+				>
+				["at0016"] = <
+					text = <"Description">
+					description = <"Narrative description of the tics.">
+				>
+				["at0017"] = <
+					text = <"Occurence">
+					description = <"">
+				>
+				["at0018"] = <
+					text = <"Ever">
+					description = <"The individual has ever experienced the tics.">
+				>
+				["at0019"] = <
+					text = <"Currently">
+					description = <"The individual is currently experiencing the tics (during the past week).">
+				>
+				["at0020"] = <
+					text = <"Complex eye movements">
+					description = <"">
+				>
+				["at0022"] = <
+					text = <"Eye gestures such as looking surprised or quizzical">
+					description = <"">
+				>
+				["at0023"] = <
+					text = <"Looking to one side for a brief period of time, as if s/he heard a noise.">
+					description = <"">
+				>
+				["at0030"] = <
+					text = <"Simple nose, mouth, tongue movements, or facial grimacing">
+					description = <"">
+				>
+				["at0032"] = <
+					text = <"Nose twitching">
+					description = <"">
+				>
+				["at0033"] = <
+					text = <"Biting the tongue">
+					description = <"">
+				>
+				["at0034"] = <
+					text = <"Chewing on the lip or licking the lip">
+					description = <"">
+				>
+				["at0035"] = <
+					text = <"Lip pouting">
+					description = <"">
+				>
+				["at0036"] = <
+					text = <"Teethbaring or teeth grinding">
+					description = <"">
+				>
+				["at0043"] = <
+					text = <"Complex nose, mouth, tongue movements, or facial grimacing">
+					description = <"">
+				>
+				["at0045"] = <
+					text = <"Broadening the nostrils as if smelling something">
+					description = <"">
+				>
+				["at0046"] = <
+					text = <"Smiling, or other gestures involving the mouth">
+					description = <"">
+				>
+				["at0047"] = <
+					text = <"Holding funny expressions, or sticking out the tongue">
+					description = <"">
+				>
+				["at0054"] = <
+					text = <"Simple head jerks/ movements">
+					description = <"">
+				>
+				["at0056"] = <
+					text = <"Touching the shoulder with the chin">
+					description = <"">
+				>
+				["at0057"] = <
+					text = <"Lifting the chin up">
+					description = <"">
+				>
+				["at0064"] = <
+					text = <"Complex head jerks/ movements">
+					description = <"">
+				>
+				["at0066"] = <
+					text = <"Throwing the head back, as if to get hair out of the eyes">
+					description = <"">
+				>
+				["at0073"] = <
+					text = <"Simple shoulder jerks/movements">
+					description = <"">
+				>
+				["at0075"] = <
+					text = <"Jerking of a shoulder">
+					description = <"">
+				>
+				["at0082"] = <
+					text = <"Complex shoulder jerks/movements">
+					description = <"">
+				>
+				["at0084"] = <
+					text = <"Shrugging the shoulder as if to say \"I don't know.\"">
+					description = <"">
+				>
+				["at0091"] = <
+					text = <"Simple arm or hand movements.">
+					description = <"">
+				>
+				["at0093"] = <
+					text = <"Quickly flexing the arms or extending them">
+					description = <"">
+				>
+				["at0094"] = <
+					text = <"Nail biting">
+					description = <"">
+				>
+				["at0095"] = <
+					text = <"Poking with fingers">
+					description = <"">
+				>
+				["at0102"] = <
+					text = <"Complex arm or hand movements">
+					description = <"">
+				>
+				["at0104"] = <
+					text = <"Passing hand through the hair in a combing like fashion">
+					description = <"">
+				>
+				["at0105"] = <
+					text = <"Touching objects or others">
+					description = <"">
+				>
+				["at0106"] = <
+					text = <"Pinching, or counting with fingers for no purpose">
+					description = <"">
+				>
+				["at0107"] = <
+					text = <"Writing tics, such as writing over and over the same letter or word">
+					description = <"">
+				>
+				["at0108"] = <
+					text = <"Pulling back on the pencil while writing">
+					description = <"">
+				>
+				["at0115"] = <
+					text = <"Simple leg, foot or toe movements">
+					description = <"">
+				>
+				["at0117"] = <
+					text = <"Kicking">
+					description = <"">
+				>
+				["at0118"] = <
+					text = <"Skipping">
+					description = <"">
+				>
+				["at0119"] = <
+					text = <"Knee-bending">
+					description = <"">
+				>
+				["at0120"] = <
+					text = <"Flexing or extension of the ankles">
+					description = <"">
+				>
+				["at0121"] = <
+					text = <"Shaking, stomping or tapping the foot">
+					description = <"">
+				>
+				["at0128"] = <
+					text = <"Complex leg, foot or toe movements">
+					description = <"">
+				>
+				["at0130"] = <
+					text = <"Taking a step forward and two steps backward">
+					description = <"">
+				>
+				["at0131"] = <
+					text = <"Squatting">
+					description = <"">
+				>
+				["at0138"] = <
+					text = <"Abdominal/trunk/pelvis movements">
+					description = <"">
+				>
+				["at0140"] = <
+					text = <"Tensing the abdomen">
+					description = <"">
+				>
+				["at0141"] = <
+					text = <"Tensing the buttocks">
+					description = <"">
+				>
+				["at0148"] = <
+					text = <"Other simple motor tics">
+					description = <"">
+				>
+				["at0149"] = <
+					text = <"*Symptom">
+					description = <"Narrative description-......">
+				>
+				["at0156"] = <
+					text = <"Other complex motor tics">
+					description = <"">
+				>
+				["at0158"] = <
+					text = <"Touching">
+					description = <"">
+				>
+				["at0165"] = <
+					text = <"Andre komplekse motoriske tics 2">
+					description = <"">
+				>
+				["at0167"] = <
+					text = <"Tapping">
+					description = <"">
+				>
+				["at0174"] = <
+					text = <"Andre komplekse motoriske tics 3">
+					description = <"">
+				>
+				["at0176"] = <
+					text = <"Picking">
+					description = <"">
+				>
+				["at0183"] = <
+					text = <"Andre komplekse motoriske tics 4">
+					description = <"">
+				>
+				["at0185"] = <
+					text = <"Evening-up">
+					description = <"">
+				>
+				["at0192"] = <
+					text = <"Andre komplekse motoriske tics 5">
+					description = <"">
+				>
+				["at0194"] = <
+					text = <"Reckless behaviours">
+					description = <"">
+				>
+				["at0201"] = <
+					text = <"Andre komplekse motoriske tics 6">
+					description = <"">
+				>
+				["at0203"] = <
+					text = <"Stimulus-dependent tics">
+					description = <"A tic which follows, for example, hearing a particular word or phrase, seeing a specific object, smelling a particular odor)">
+				>
+				["at0210"] = <
+					text = <"Andre komplekse motoriske tics 7">
+					description = <"">
+				>
+				["at0212"] = <
+					text = <"Rude/obscene gestures; obscene finger/hand gestures">
+					description = <"">
+				>
+				["at0219"] = <
+					text = <"Andre komplekse motoriske tics 8">
+					description = <"">
+				>
+				["at0221"] = <
+					text = <"Unusual postures">
+					description = <"">
+				>
+				["at0228"] = <
+					text = <"Andre komplekse motoriske tics 9">
+					description = <"">
+				>
+				["at0230"] = <
+					text = <"Bending or gyrating, such as bending over">
+					description = <"">
+				>
+				["at0237"] = <
+					text = <"Andre komplekse motoriske tics 10">
+					description = <"">
+				>
+				["at0239"] = <
+					text = <"Rotating or spinning on one foot">
+					description = <"">
+				>
+				["at0246"] = <
+					text = <"Andre komplekse motoriske tics 11">
+					description = <"">
+				>
+				["at0248"] = <
+					text = <"Copying the action of another (echopraxia)">
+					description = <"">
+				>
+				["at0255"] = <
+					text = <"Andre komplekse motoriske tics 12">
+					description = <"">
+				>
+				["at0257"] = <
+					text = <"*Sudden tic-like impulsive behaviors. BESKRIV">
+					description = <"">
+				>
+				["at0264"] = <
+					text = <"Andre komplekse motoriske tics 13">
+					description = <"">
+				>
+				["at0266"] = <
+					text = <"*Tic-like behaviors that could injure/mutilate others. BESKRIV">
+					description = <"">
+				>
+				["at0273"] = <
+					text = <"Andre komplekse motoriske tics 14">
+					description = <"">
+				>
+				["at0275"] = <
+					text = <"*Self-injurious tic-like behavior(s) BESKRIV">
+					description = <"">
+				>
+				["at0282"] = <
+					text = <"Other involuntary and apparently purposeless motor tics">
+					description = <"Other involuntary and apparently purposeless motor tics that do not fit in any previous categories.">
+				>
+				["at0290"] = <
+					text = <"Fonetiske (vokale) tics">
+					description = <"">
+				>
+				["at0291"] = <
+					text = <"Age of first vocal tics">
+					description = <"Number of years at the first vocal tics.">
+				>
+				["at0292"] = <
+					text = <"First vocal tic">
+					description = <"Describe first vocal tic.">
+				>
+				["at0293"] = <
+					text = <"Was tic onset sudden or gradual?">
+					description = <"">
+				>
+				["at0294"] = <
+					text = <"Age of worst vocal tics?">
+					description = <"Number of years at the worst vocal tics.">
+				>
+				["at0295"] = <
+					text = <"Phonic tic symptom checklist">
+					description = <"The patient has experienced, or others have noticed, bouts of involuntary and apparently purposeless utterance of:">
+				>
+				["at0296"] = <
+					text = <"Fonetiske tics 1">
+					description = <"">
+				>
+				["at0298"] = <
+					text = <"Coughing">
+					description = <"">
+				>
+				["at0305"] = <
+					text = <"Fonetiske tics 2">
+					description = <"">
+				>
+				["at0307"] = <
+					text = <"Throat clearing">
+					description = <"">
+				>
+				["at0314"] = <
+					text = <"Fonetiske tics 3">
+					description = <"">
+				>
+				["at0316"] = <
+					text = <"Sniffing">
+					description = <"">
+				>
+				["at0323"] = <
+					text = <"Fonetiske tics 4">
+					description = <"">
+				>
+				["at0325"] = <
+					text = <"Whistling">
+					description = <"">
+				>
+				["at0332"] = <
+					text = <"Fonetiske tics 5">
+					description = <"">
+				>
+				["at0334"] = <
+					text = <"Animal or bird noises">
+					description = <"">
+				>
+				["at0341"] = <
+					text = <"Fonetiske tics 6">
+					description = <"">
+				>
+				["at0343"] = <
+					text = <"Other simple phonic tics.">
+					description = <"List other single phonic tics.">
+				>
+				["at0350"] = <
+					text = <"Fonetiske tics 7">
+					description = <"">
+				>
+				["at0352"] = <
+					text = <"*Syllables.">
+					description = <"List syllables.">
+				>
+				["at0359"] = <
+					text = <"Fonetiske tics 8">
+					description = <"">
+				>
+				["at0361"] = <
+					text = <"*Words. List opp">
+					description = <"">
+				>
+				["at0368"] = <
+					text = <"Fonetiske tics 9">
+					description = <"">
+				>
+				["at0370"] = <
+					text = <"*Rude or obscene words or phrases. List opp">
+					description = <"">
+				>
+				["at0377"] = <
+					text = <"Fonetiske tics 10">
+					description = <"">
+				>
+				["at0379"] = <
+					text = <"Repeating what someone else said">
+					description = <"Either sounds, single words or sentences. Perhaps repeating what’s said on TV (echolalia).">
+				>
+				["at0386"] = <
+					text = <"Fonetiske tics 11">
+					description = <"">
+				>
+				["at0388"] = <
+					text = <"Repeating something the patient said over and over again (palilalia)">
+					description = <"Legge til nytt element -other tic-like speech problems, such as sudden changes in volume or pitch. Please describe:">
+				>
+				["at0395"] = <
+					text = <"Hva gjør vi med denne?">
+					description = <"">
+				>
+				["at0397"] = <
+					text = <"* Bør denne være åpen? Describe any other patterns or sequences of phonic tic behaviors">
+					description = <"">
+				>
+				["at0404"] = <
+					text = <"Fonetiske tics 12">
+					description = <"">
+				>
+				["at0406"] = <
+					text = <"Other tic-like speech problems">
+					description = <"Such as sudden changes in volume or pitch">
+				>
+				["at0407"] = <
+					text = <"Popping knuckles">
+					description = <"">
+				>
+				["at0408"] = <
+					text = <"Deep knee-bending">
+					description = <"">
+				>
+			>
+		>
+		["nb"] = <
+			items = <
+				["at0000"] = <
+					text = <"Yale Global Tic Severity Scale - sjekkliste">
+					description = <"Sjekkliste brukt som basis for skår av alvorlighetsgrad av tics.">
+				>
+				["at0001"] = <
+					text = <"Motoriske tics">
+					description = <"">
+				>
+				["at0002"] = <
+					text = <"Alder på første motoriske tics">
+					description = <"Antall år ved første motoriske tics.">
+				>
+				["at0003"] = <
+					text = <"Beskriv det første motoriske tic">
+					description = <"Beskrivelse av det første motoriske tic.">
+				>
+				["at0004"] = <
+					text = <"Var begynnelsen plutselig eller gradvis?">
+					description = <"Beskriv om begynnelsen var plutselig eller gradvis.">
+				>
+				["at0005"] = <
+					text = <"Alder på verste motoriske tics">
+					description = <"Antall år ved verste motoriske tics.">
+				>
+				["at0006"] = <
+					text = <"Sjekkliste for symptomer på motoriske tics">
+					description = <"Pasienten har opplevd, eller andre har lagt merke til, ufrivillige og tilsynelatende formålsløse serier av:">
+				>
+				["at0007"] = <
+					text = <"Enkle øyebevegelser">
+					description = <"">
+				>
+				["at0008"] = <
+					text = <"Tics">
+					description = <"">
+				>
+				["at0009"] = <
+					text = <"Blunke">
+					description = <"">
+				>
+				["at0010"] = <
+					text = <"Knipe øynene sammen">
+					description = <"">
+				>
+				["at0011"] = <
+					text = <"En rask dreining av øynene">
+					description = <"">
+				>
+				["at0012"] = <
+					text = <"Øyrerulling til en side">
+					description = <"">
+				>
+				["at0013"] = <
+					text = <"Sperre opp øynene en veldig kort stund">
+					description = <"">
+				>
+				["at0014"] = <
+					text = <"Debut (alder)">
+					description = <"Oppstartsalder (i år) for når individet har hatt denne oppførselen.">
+				>
+				["at0015"] = <
+					text = <"Verifisert">
+					description = <"Tics er verifisert av en kliniker.">
+				>
+				["at0016"] = <
+					text = <"Beskrivelse">
+					description = <"Fritekstbeskrivelse av tics.">
+				>
+				["at0017"] = <
+					text = <"Forekomst">
+					description = <"">
+				>
+				["at0018"] = <
+					text = <"Noensinne">
+					description = <"Individet har noensinne opplevd ticsene.">
+				>
+				["at0019"] = <
+					text = <"For tiden">
+					description = <"Individet opplever for tiden (i løpet av den siste uken) ticsene.">
+				>
+				["at0020"] = <
+					text = <"Komplekse øyebevegelser">
+					description = <"">
+				>
+				["at0022"] = <
+					text = <"Å se overrasket eller spørrende ut">
+					description = <"">
+				>
+				["at0023"] = <
+					text = <"Se til den ene siden i en kort periode, som om han/hun hørte en lyd">
+					description = <"">
+				>
+				["at0030"] = <
+					text = <"Enkle nese-, munn-, tungebevegelser, eller ansiktsgrimaser">
+					description = <"">
+				>
+				["at0032"] = <
+					text = <"Rynkninger av nesen">
+					description = <"">
+				>
+				["at0033"] = <
+					text = <"Bite på tungen">
+					description = <"">
+				>
+				["at0034"] = <
+					text = <"Tygge på eller slikke leppen">
+					description = <"">
+				>
+				["at0035"] = <
+					text = <"Lage trutmunn">
+					description = <"">
+				>
+				["at0036"] = <
+					text = <"Vise tennene eller gnisse tenner">
+					description = <"">
+				>
+				["at0043"] = <
+					text = <"Komplekse nese-, munn-, tungebevegelser, eller ansiktsgrimaser">
+					description = <"">
+				>
+				["at0045"] = <
+					text = <"Utvide neseborene som om man lukter noe">
+					description = <"">
+				>
+				["at0046"] = <
+					text = <"Smile eller andre gester som involverer munnen">
+					description = <"">
+				>
+				["at0047"] = <
+					text = <"Lage morsomme ansiktsuttrykk eller stikke ut tungen">
+					description = <"">
+				>
+				["at0054"] = <
+					text = <"Enkle hoderykninger/-bevegelser">
+					description = <"">
+				>
+				["at0056"] = <
+					text = <"Berøre skulderen med haken">
+					description = <"">
+				>
+				["at0057"] = <
+					text = <"Løfte haken opp">
+					description = <"">
+				>
+				["at0064"] = <
+					text = <"Komplekse hoderykninger/-bevegelser">
+					description = <"">
+				>
+				["at0066"] = <
+					text = <"Kaste hodet tilbake, som for å få håret ut av øynene">
+					description = <"">
+				>
+				["at0073"] = <
+					text = <"Enkle skulderrykninger/-bevegelser">
+					description = <"">
+				>
+				["at0075"] = <
+					text = <"Rykninger av en skulder">
+					description = <"">
+				>
+				["at0082"] = <
+					text = <"Komplekse skulderrykninger/-bevegelser">
+					description = <"">
+				>
+				["at0084"] = <
+					text = <"Trekke på skuldrene som om man sier «jeg vet ikke»">
+					description = <"">
+				>
+				["at0091"] = <
+					text = <"Arm- eller håndbevegelser 1">
+					description = <"">
+				>
+				["at0093"] = <
+					text = <"Raskt å bøye eller strekke armene">
+					description = <"">
+				>
+				["at0094"] = <
+					text = <"Bite på neglene">
+					description = <"">
+				>
+				["at0095"] = <
+					text = <"Pirke med fingrene">
+					description = <"">
+				>
+				["at0102"] = <
+					text = <"Komplekse arm- eller håndbevegelser">
+					description = <"">
+				>
+				["at0104"] = <
+					text = <"Dra hånden gjennom håret som å kjemme det">
+					description = <"">
+				>
+				["at0105"] = <
+					text = <"Berøre gjenstander eller andre">
+					description = <"">
+				>
+				["at0106"] = <
+					text = <"Klype eller telle med fingrene uten formål">
+					description = <"">
+				>
+				["at0107"] = <
+					text = <"Skrive om og om den samme bokstaven eller det samme ordet">
+					description = <"">
+				>
+				["at0108"] = <
+					text = <"Trekke tilbake på blyanten mens man skriver">
+					description = <"">
+				>
+				["at0115"] = <
+					text = <"Enkleen-, fot- eller tåbevegelser">
+					description = <"">
+				>
+				["at0117"] = <
+					text = <"Sparke">
+					description = <"">
+				>
+				["at0118"] = <
+					text = <"Sprette">
+					description = <"">
+				>
+				["at0119"] = <
+					text = <"Knebøyning">
+					description = <"">
+				>
+				["at0120"] = <
+					text = <"Bøye eller strekke ut anklene">
+					description = <"">
+				>
+				["at0121"] = <
+					text = <"Riste, stampe eller tappe med foten">
+					description = <"">
+				>
+				["at0128"] = <
+					text = <"bKomplekse en-, fot- eller tåbevegelser">
+					description = <"">
+				>
+				["at0130"] = <
+					text = <"Ta et steg frem og to bakover">
+					description = <"">
+				>
+				["at0131"] = <
+					text = <"Sette seg på huk">
+					description = <"">
+				>
+				["at0138"] = <
+					text = <"Bevegelser av mage, buk eller bekken">
+					description = <"">
+				>
+				["at0140"] = <
+					text = <"Spenne magen">
+					description = <"">
+				>
+				["at0141"] = <
+					text = <"Spenne rumpa">
+					description = <"">
+				>
+				["at0148"] = <
+					text = <"Andre enkle motoriske tics">
+					description = <"">
+				>
+				["at0149"] = <
+					text = <"Symptom">
+					description = <"*Narrative description-......(en)">
+				>
+				["at0156"] = <
+					text = <"Andre komplekse motoriske tics 1">
+					description = <"">
+				>
+				["at0158"] = <
+					text = <"Berøring">
+					description = <"">
+				>
+				["at0165"] = <
+					text = <"Andre komplekse motoriske tics 2">
+					description = <"">
+				>
+				["at0167"] = <
+					text = <"Slå på ting med fingrene">
+					description = <"">
+				>
+				["at0174"] = <
+					text = <"Andre komplekse motoriske tics 3">
+					description = <"">
+				>
+				["at0176"] = <
+					text = <"Plukking">
+					description = <"">
+				>
+				["at0183"] = <
+					text = <"Andre komplekse motoriske tics 4">
+					description = <"">
+				>
+				["at0185"] = <
+					text = <"Utjevning/ordning">
+					description = <"">
+				>
+				["at0192"] = <
+					text = <"Andre komplekse motoriske tics 5">
+					description = <"">
+				>
+				["at0194"] = <
+					text = <"Uforsiktig atferd">
+					description = <"">
+				>
+				["at0201"] = <
+					text = <"Andre komplekse motoriske tics 6">
+					description = <"">
+				>
+				["at0203"] = <
+					text = <"Stimulus-relaterte tics">
+					description = <"Et tic som for eksempel kommer etter å ha hørt et bestemt ord eller uttrykk, etter å ha sett en spesifikk gjenstand, etter å ha luktet en bestemt lukt.">
+				>
+				["at0210"] = <
+					text = <"Andre komplekse motoriske tics 7">
+					description = <"">
+				>
+				["at0212"] = <
+					text = <"Uhøflige/obskøne gester; obskøne finger-/håndgester/bevegelser">
+					description = <"">
+				>
+				["at0219"] = <
+					text = <"Andre komplekse motoriske tics 8">
+					description = <"">
+				>
+				["at0221"] = <
+					text = <"Uvanlige kroppsstillinger">
+					description = <"">
+				>
+				["at0228"] = <
+					text = <"Andre komplekse motoriske tics 9">
+					description = <"">
+				>
+				["at0230"] = <
+					text = <"Lage runde bevegelser med eller bøye kroppen, f.eks. bøye seg ned">
+					description = <"">
+				>
+				["at0237"] = <
+					text = <"Andre komplekse motoriske tics 10">
+					description = <"">
+				>
+				["at0239"] = <
+					text = <"Rotere eller spinne på en fot">
+					description = <"">
+				>
+				["at0246"] = <
+					text = <"Andre komplekse motoriske tics 11">
+					description = <"">
+				>
+				["at0248"] = <
+					text = <"Etterligne noen andres bevegelser (ekkopraksi)">
+					description = <"">
+				>
+				["at0255"] = <
+					text = <"Andre komplekse motoriske tics 12">
+					description = <"">
+				>
+				["at0257"] = <
+					text = <"Plutselig tic-lignende impulsiv atferd. Beskriv">
+					description = <"">
+				>
+				["at0264"] = <
+					text = <"Andre komplekse motoriske tics 13">
+					description = <"">
+				>
+				["at0266"] = <
+					text = <"Tic-lignende atferd som kan skade/lemleste andre. Beskriv">
+					description = <"">
+				>
+				["at0273"] = <
+					text = <"Andre komplekse motoriske tics 14">
+					description = <"">
+				>
+				["at0275"] = <
+					text = <"Selvskadende tic-lignende atferd. Beskriv">
+					description = <"">
+				>
+				["at0282"] = <
+					text = <"Andre ufrivillige og tilsynelatende hensiktsløse motoriske tics">
+					description = <"Andre ufrivillige og tilsynelatende hensiktsløse motoriske tics (som ikke passer inn i noen tidligere kategorier).">
+				>
+				["at0290"] = <
+					text = <"Fonetiske (vokale) tics">
+					description = <"">
+				>
+				["at0291"] = <
+					text = <"Alder på første vokale tics">
+					description = <"Antall år gammel ved første vokale tics.">
+				>
+				["at0292"] = <
+					text = <"Beskriv det første vokale tic">
+					description = <"Beskrivelse av det første vokale tic.">
+				>
+				["at0293"] = <
+					text = <"Var begynnelsen plutselig eller gradvis?">
+					description = <"">
+				>
+				["at0294"] = <
+					text = <"Alder på verste fokale tics">
+					description = <"Antall år gammel ved verste fokale tics.">
+				>
+				["at0295"] = <
+					text = <"Sjekkliste for symptomer på fonetiske tics">
+					description = <"Pasienten har opplevd, eller andre har lagt merke til, ufrivillige og tilsynelatende formålsløse serier av:">
+				>
+				["at0296"] = <
+					text = <"Fonetiske tics 1">
+					description = <"">
+				>
+				["at0298"] = <
+					text = <"Hosting">
+					description = <"">
+				>
+				["at0305"] = <
+					text = <"Fonetiske tics 2">
+					description = <"">
+				>
+				["at0307"] = <
+					text = <"Harking">
+					description = <"">
+				>
+				["at0314"] = <
+					text = <"Fonetiske tics 3">
+					description = <"">
+				>
+				["at0316"] = <
+					text = <"Snufsing">
+					description = <"">
+				>
+				["at0323"] = <
+					text = <"Fonetiske tics 4">
+					description = <"">
+				>
+				["at0325"] = <
+					text = <"Plystring">
+					description = <"">
+				>
+				["at0332"] = <
+					text = <"Fonetiske tics 5">
+					description = <"">
+				>
+				["at0334"] = <
+					text = <"Dyre- eller fuglelyder">
+					description = <"">
+				>
+				["at0341"] = <
+					text = <"Fonetiske tics 6">
+					description = <"">
+				>
+				["at0343"] = <
+					text = <"Andre enkle fonetiske tics.">
+					description = <"List opp andre enkle fonetiske tics">
+				>
+				["at0350"] = <
+					text = <"Fonetiske tics 7">
+					description = <"">
+				>
+				["at0352"] = <
+					text = <"Stavelser. List opp">
+					description = <"*List syllables.(en)">
+				>
+				["at0359"] = <
+					text = <"Fonetiske tics 8">
+					description = <"">
+				>
+				["at0361"] = <
+					text = <"Ord. List opp">
+					description = <"">
+				>
+				["at0368"] = <
+					text = <"Fonetiske tics 9">
+					description = <"">
+				>
+				["at0370"] = <
+					text = <"Uhøflige eller obskøne ord eller uttrykk. List opp">
+					description = <"">
+				>
+				["at0377"] = <
+					text = <"Fonetiske tics 10">
+					description = <"">
+				>
+				["at0379"] = <
+					text = <"Gjenta hva noen andre har sagt, enten lyder, enkeltstående ord eller setninger. F.eks. noe som ble sagt på TV (ekkolali)">
+					description = <"For eksempel noe som ble sagt på TV (ekkolali)">
+				>
+				["at0386"] = <
+					text = <"Fonetiske tics 11">
+					description = <"">
+				>
+				["at0388"] = <
+					text = <"Gjenta om og om igjen noe som man selv har sagt (palilali) andre tic-lignende språkproblemer, som plutselig forandring i volum eller tonehøyde. Beskriv">
+					description = <"*Legge til nytt element -other tic-like speech problems, such as sudden changes in volume or pitch. Please describe:(en)">
+				>
+				["at0395"] = <
+					text = <"*Hva gjør vi med denne? (en)">
+					description = <"">
+				>
+				["at0397"] = <
+					text = <"Beskriv andre mønster eller sekvenser av fonetiske tics">
+					description = <"">
+				>
+				["at0404"] = <
+					text = <"Fonetiske tics 12">
+					description = <"">
+				>
+				["at0406"] = <
+					text = <"Andre tic-lignende språkproblemer">
+					description = <"Som plutselig forandring i volum eller tonehøyde.">
+				>
+				["at0407"] = <
+					text = <"Knekke fingerledd">
+					description = <"">
+				>
+				["at0408"] = <
+					text = <"Gjøre dype knebøy">
+					description = <"">
+				>
+			>
+		>
+	>
