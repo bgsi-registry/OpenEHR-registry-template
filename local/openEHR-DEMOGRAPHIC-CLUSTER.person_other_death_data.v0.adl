@@ -1,0 +1,132 @@
+archetype (adl_version=1.4; uid=8d3b8c2d-16e3-4c35-8de7-c62e6b5f37d7)
+	openEHR-DEMOGRAPHIC-CLUSTER.person_other_death_data.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+	translations = <
+		["pt-br"] = <
+			language = <[ISO_639-1::pt-br]>
+			author = <
+				["name"] = <"Sergio Miranda Freire">
+				["organisation"] = <"Universidade do Estado do Rio de Janeiro - UERJ">
+				["email"] = <"sergio@lampada.uerj.br">
+			>
+		>
+	>
+
+description
+	original_author = <
+		["date"] = <"2009-05-20">
+		["name"] = <"Sergio Miranda Freire & Rigoleta Dutra Mediano Dias">
+		["organisation"] = <"Universidade do Estado do Rio de Janeiro - UERJ">
+		["email"] = <"sergio@lampada.uerj.br">
+	>
+	lifecycle_state = <"in_development">
+	other_contributors = <"Rigoleta Dutra, Ministry of Defense, Brazil (openEHR Editor)","Sergio Freire, State University of Rio de Janeiro, Brazil (openEHR Editor)","Ian McNicoll, freshEHR Clinical Informatics, United Kingdom (openEHR Editor)">
+	details = <
+		["pt-br"] = <
+			language = <[ISO_639-1::pt-br]>
+			purpose = <"Coleta de dados demográficos sobre o óbito de um indivíduo">
+			keywords = <"serviço demográfico","dados demográficos do óbito">
+			copyright = <"© openEHR Foundation">
+			use = <"Usado em serviços de demografia para coletar dados relativos ao local e número do certificado de óbito de um indivíduo">
+		>
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"Representation of a person's demographic death data">
+			keywords = <"demographic service","death demographic data">
+			copyright = <"© openEHR Foundation">
+			use = <"Used in demographic services to collect data about the place and death certificate number of a person's death">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["MD5-CAM-1.0.1"] = <"B79B1299F090A8222494523838E24626">
+		["build_uid"] = <"98c1f816-33a9-4f14-8b99-c5c6e40b4751">
+		["revision"] = <"0.0.1-alpha">
+	>
+
+definition
+	CLUSTER[at0000] matches {    -- Death additional data
+		items cardinality matches {1..*; ordered} matches {
+			ELEMENT[at0001] occurrences matches {0..1} matches {    -- Country
+				value matches {
+					DV_CODED_TEXT matches {*}
+				}
+			}
+			ELEMENT[at0002] occurrences matches {0..1} matches {    -- State/territory/province
+				value matches {
+					DV_CODED_TEXT matches {*}
+				}
+			}
+			ELEMENT[at0003] occurrences matches {0..1} matches {    -- City/town/locality
+				value matches {
+					DV_CODED_TEXT matches {*}
+				}
+			}
+			ELEMENT[at0004] occurrences matches {0..1} matches {    -- Death certificate number
+				value matches {
+					DV_TEXT matches {*}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["pt-br"] = <
+			items = <
+				["at0000"] = <
+					text = <"Dados adicionais do óbito">
+					description = <"Dados demográficos adicionais do óbito">
+				>
+				["at0001"] = <
+					text = <"País">
+					description = <"O país onde a pessoa faleceu">
+				>
+				["at0002"] = <
+					text = <"Estado/território/província">
+					description = <"O estado/território/província onde a pessoa faleceu">
+				>
+				["at0003"] = <
+					text = <"Cidade/localidade">
+					description = <"A cidade/localidade onde a pessoa faleceu">
+				>
+				["at0004"] = <
+					text = <"Número do certificado">
+					description = <"Informa o número do certificado de óbito">
+				>
+			>
+		>
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Death additional data">
+					description = <"Death additional demographic data">
+				>
+				["at0001"] = <
+					text = <"Country">
+					description = <"The country where a person  died">
+				>
+				["at0002"] = <
+					text = <"State/territory/province">
+					description = <"The state/territory/province where a person died">
+				>
+				["at0003"] = <
+					text = <"City/town/locality">
+					description = <"The city/town/locality where a person died">
+				>
+				["at0004"] = <
+					text = <"Death certificate number">
+					description = <"The number of the death certificate">
+				>
+			>
+		>
+	>
