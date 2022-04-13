@@ -1,0 +1,153 @@
+archetype (adl_version=1.4; uid=242a8ca0-b384-4c65-ba76-a75047350ef3)
+	openEHR-EHR-COMPOSITION.event_summary.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+	translations = <
+		["de"] = <
+			language = <[ISO_639-1::de]>
+			author = <
+				["name"] = <"Michael Lieser">
+				["organisation"] = <"University of Heidelberg, Department of Infectious Diseases">
+				["email"] = <"michael.lieser@med.uni-heidelberg.de">
+			>
+		>
+		["pt-br"] = <
+			language = <[ISO_639-1::pt-br]>
+			author = <
+				["name"] = <"Débora Farage, Fernanda Maia, Adriana Kitajima, Ana Paula Andrade, Clóvis Puttini">
+				["organisation"] = <"Core Consulting">
+				["email"] = <"contato@coreconsulting.com.br">
+			>
+			accreditation = <"Hospital Alemão Oswaldo Cruz">
+		>
+	>
+
+description
+	original_author = <
+		["date"] = <"2012-01-31">
+		["name"] = <"Sistine Barretto-Daniels">
+		["organisation"] = <"Ocean Informatics Pty Ltd">
+		["email"] = <"Sistine.Barretto-Daniels@oceaninformatics.com">
+	>
+	lifecycle_state = <"in_development">
+	details = <
+		["de"] = <
+			language = <[ISO_639-1::de]>
+			purpose = <"Zur Dokumentation der Zusammenfassung eines einzelnen, signifikanten Vorgangs im Gesundheitswesen, mit dem Ziel, diesen anderen Leistungserbringern im Umfeld gemeinsamer Gesundheitsakten (Beispiel: Australia National eHealth Record) zugänglich zu machen.">
+			keywords = <"Vorgang","Behandlung","Episode","Begegnung","Kontakt">
+			use = <"Zur Dokumentation der Zusammenfassung eines einzelnen, wesentlichen Vorgangs oder einer Behandlungsepisode im Gesundheitswesen, zur Darstellung oder Übermittlung im Umfeld gemeinsamer Gesundheitsakten.">
+			misuse = <"Nicht zur Erfassung von kompletten und zeitgleichen Details eines Vorgangs im Gesundheitswesen, einer Behandlung oder Behandlungsepisode in Gesundheitsakten des Leistungserbringers. Bitte in diesem Fall COMPOSITION.encounter (und Spezialisierungen) nutzen.">
+		>
+		["pt-br"] = <
+			language = <[ISO_639-1::pt-br]>
+			purpose = <"Usado para registrar um sumário de um único evento significativo no cuidado à saúde. com a intenção de disponibilizá-lo a múltiplos provedores em um ambiente de compartilhamento de registros de saúde, como o Australia's National eHealth Record (ou PCEHR).">
+			keywords = <"evento","encontro","episódio">
+			use = <"Usado para registrar um únivo evento ou episódio significativo no cuidado à saúde para visualização ou troca dentro de um ambiente de compartilhamento de registros de saúde.">
+			misuse = <"Não deve ser usado para registrar detalhes completos e contemporâneos de um evento em saúde, encontro ou episódio de cuidado dentro do registro de cuidado do profissional de saúde. Use COMPOSITION.encounter ( e especializações) para este propósito.">
+		>
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record a summary of a single, significant healthcare event, with the intent of being made available to multiple providers within a shared health record environment, such as the Australia's National eHealth Record (or PCEHR).">
+			keywords = <"event","encounter","episode">
+			copyright = <"© openEHR Foundation">
+			use = <"Use to record a summary of a single, significant healthcare event or episode of care for viewing or exchange within a shared health record environment.">
+			misuse = <"Not to be used to record the complete and contemporaneous details of a healthcare event, encounter or episode of care within a care provider's health record. Use COMPOSITION.encounter (and specialisations) for this purpose.">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["references"] = <"NEHTA Event Summary Structure Document Template Specification v1.1">
+		["current_contact"] = <"Heather Leslie, Atomica Informatics<heather.leslie@atomicainformatics.com>">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["MD5-CAM-1.0.1"] = <"969E8E6F74B14A748E81BB93967ACFCB">
+		["build_uid"] = <"8825b09d-bd2d-4377-afe6-d0d762b08671">
+		["revision"] = <"0.0.1-alpha">
+	>
+
+definition
+	COMPOSITION[at0000] matches {    -- Event summary
+		category matches {
+			DV_CODED_TEXT matches {
+				defining_code matches {
+					[openehr::433]
+				}
+			}
+		}
+		context matches {
+			EVENT_CONTEXT matches {
+				other_context matches {
+					ITEM_TREE[at0001] matches {    -- Tree
+						items cardinality matches {0..*; unordered} matches {
+							allow_archetype CLUSTER[at0002] occurrences matches {0..*} matches {    -- Extension
+								include
+									archetype_id/value matches {/.*/}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Event summary">
+					description = <"Summary record of a single, significant healthcare event, encounter or episode.">
+				>
+				["at0001"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Extension">
+					description = <"Additional information required to capture local content or to align with other reference models/formalisms.">
+					comment = <" For example: local information requirements or additional metadata to align with FHIR or CIMI equivalents.">
+				>
+			>
+		>
+		["de"] = <
+			items = <
+				["at0000"] = <
+					text = <"Zusammenfassung eines Vorgangs">
+					description = <"Zusammenfassung eines einzelnen, wesentlichen Vorgangs im Gesundheitswesen, eines Kontakts oder einer Behandlungsepisode.">
+				>
+				["at0001"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Erweiterung">
+					description = <"Zusätzliche Informationen zur Erfassung lokaler Inhalte oder Anpassung an andere Referenzmodelle/Formalismen
+Ergänzende lokale Informationen oder solche, die zum Abgleich mit anderen Referenzmodellen/Formalismen benötigt werden.">
+					comment = <"Zum Beispiel: Lokaler Informationsbedarf oder zusätzliche Metadaten zur Anpassung an FHIR-Resourcen oder CIMI-Äquivalente.">
+				>
+			>
+		>
+		["pt-br"] = <
+			items = <
+				["at0000"] = <
+					text = <"Sumário de evento">
+					description = <"Registro de sumário de um evento, encontro ou episódio significativo no cuidado em saúde.">
+				>
+				["at0001"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Extensão">
+					description = <"Informação adicional necessária para capturar conteúdo local ou para alinhar a outros modelos de referência/formalismos.">
+					comment = <"Por exemplo: requisitos de informação locais ou metadados adicionais para alinhar a equivalentes FHIR ou CIMI.">
+				>
+			>
+		>
+	>
