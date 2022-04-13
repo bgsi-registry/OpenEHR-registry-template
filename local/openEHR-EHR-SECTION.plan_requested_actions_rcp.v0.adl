@@ -1,0 +1,70 @@
+archetype (adl_version=1.4; uid=6e4f885b-e107-422e-bdf1-0d7318660f6b)
+	openEHR-EHR-SECTION.plan_requested_actions_rcp.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2014-06-08">
+		["name"] = <"Ian McNicoll">
+		["organisation"] = <"freshEHR Clinical Informatics">
+		["email"] = <"ian@freshehr.com">
+	>
+	lifecycle_state = <"in_development">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To organise Pan and requested actions details within a standardised record heading as recommended by the UK Academy of Royal Colleges (AoMRC).
+
+Suggested 'subheading' content includes ...
+
+Actions:
+Including planned investigations, procedures and treatment for a
+patient’s identified conditions and priorities:
+A)  person responsible - name and designation / department / hospital /
+patient / etc responsible for carrying out the proposed action, and where action should take place
+B)  action - requested, planned or completed
+C)  when action requested for - requested date, time, or period - as relevant
+D)  suggested strategies - suggested strategies for potential problems, eg telephone contact for advice.
+
+Agreed with patient or legitimate patient representative:
+Indicates whether the patient or legitimate representative has agreed the entire plan or individual aspects of treatment, expected outcomes, risks and alternative treatments if any (yes/no).
+
+Next appointment details:
+eg booking follow-up appointment, etc.
+
+">
+			copyright = <"© Clinical Models UK, openEHR Foundation">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["references"] = <"Health and Social Care Information Centre, Academy of Medical Royal Colleges (2013) Standards for the Clinical Structure and Content of Patient Records. HSCIC, Leeds.
+Available from: https://www.rcplondon.ac.uk/sites/default/files/standards-for-the-clinical-structure-and-content-of-patient-records.pdf [Accessed July 22, 2014]">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["MD5-CAM-1.0.1"] = <"4BF3AE38BEBADB10DEAEBA0822C7B318">
+		["build_uid"] = <"e1a022d3-b393-4c5b-8eaf-054a427a3e28">
+		["revision"] = <"0.0.1-alpha">
+	>
+
+definition
+	SECTION[at0000] matches {*}    -- Plan and requested actions
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Plan and requested actions">
+					description = <"Plan and requested actions heading (AoMRC)">
+				>
+			>
+		>
+	>
