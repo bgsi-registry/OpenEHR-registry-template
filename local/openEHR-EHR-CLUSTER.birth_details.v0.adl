@@ -1,0 +1,74 @@
+archetype (adl_version=1.4; uid=34d43a52-329b-42d6-bd39-ddb43e8671e0)
+	openEHR-EHR-CLUSTER.birth_details.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2021-07-15">
+		["name"] = <"Heather Leslie">
+		["organisation"] = <"Atomica Informatics">
+		["email"] = <"heather.leslie@atomicainformatics.com">
+	>
+	lifecycle_state = <"in_development">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record details related to the time and place of birth and additional non-clinical context around the birth.">
+			copyright = <"© openEHR Foundation">
+			use = <"Use to record details related to the time and place of birth and additional non-clinical context around the birth.
+
+This archetype has been designed to be used within the EVALUATION.pregnancy_summary archetype and CLUSTER.person.">
+			misuse = <"Not to be used to record anatomical sex at birth - use EVALUATION.gender for this purpose.">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["MD5-CAM-1.0.1"] = <"5A54129A1A3072D4BD615BFE70054798">
+		["build_uid"] = <"619a1a8b-dade-4641-84f3-845cd44cf3b1">
+		["revision"] = <"0.0.1-alpha">
+	>
+
+definition
+	CLUSTER[at0000] matches {    -- Birth details
+		items cardinality matches {1..*; unordered} matches {
+			ELEMENT[at0001] occurrences matches {0..1} matches {    -- Date/Time of birth
+				value matches {
+					DV_DATE_TIME matches {*}
+				}
+			}
+			ELEMENT[at0002] occurrences matches {0..1} matches {    -- Place of birth
+				value matches {
+					DV_TEXT matches {*}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Birth details">
+					description = <"Details related to the time and place of birth and additional non-clinical context around the birth.">
+				>
+				["at0002"] = <
+					text = <"Place of birth">
+					description = <"">
+				>
+				["at0001"] = <
+					text = <"Date/Time of birth">
+					description = <"Date and time of birth.">
+				>
+			>
+		>
+	>
