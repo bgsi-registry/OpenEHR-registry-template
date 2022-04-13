@@ -1,0 +1,996 @@
+archetype (adl_version=1.4; uid=8f6656b9-5c1c-4d18-bb66-4336e5d7f334)
+	openEHR-EHR-OBSERVATION.symptom_sign_screening.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+	translations = <
+		["de"] = <
+			language = <[ISO_639-1::de]>
+			author = <
+				["name"] = <"Sarah Ballout, Natalia Strauch">
+				["organisation"] = <"Medizinische Hochschule Hannover">
+				["email"] = <"ballout.sarah@mh-hannover.de, Strauch.Natalia@mh-hannover.de">
+			>
+		>
+		["fi"] = <
+			language = <[ISO_639-1::fi]>
+			author = <
+			>
+		>
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			author = <
+				["name"] = <"Emma Malm, Erik Sundvall">
+				["organisation"] = <"Karolinska University Hospital, Region Stockholm, Karolinska University Hospital, Region Stockholm + Linköping University">
+				["email"] = <"emma.malm@cambio.se, erik.sundvall@regionstockholm.se">
+			>
+		>
+		["nb"] = <
+			language = <[ISO_639-1::nb]>
+			author = <
+				["name"] = <"Marit Alice Venheim, Silje Ljosland Bakke, John Tore Valand">
+				["organisation"] = <"Helse Vest IKT AS, Helse Bergen">
+				["email"] = <"marit.alice.venheim@helse-vest-ikt.no, silje.ljosland.bakke@helse-vest-ikt.no, john.tore.valand@helse-vest-ikt.no">
+			>
+		>
+		["it"] = <
+			language = <[ISO_639-1::it]>
+			author = <
+			>
+		>
+	>
+
+description
+	original_author = <
+		["date"] = <"2020-03-13">
+		["name"] = <"Heather Leslie">
+		["organisation"] = <"Atomica Informatics">
+		["email"] = <"heather.leslie@atomicainformatics.com">
+	>
+	lifecycle_state = <"in_development">
+	other_contributors = <"Dag Aarhus, Vestre Viken HF, Norway","Vebjørn Arntzen, Oslo University Hospital, Norway (openEHR Editor)","Silje Ljosland Bakke, Helse Vest IKT AS, Norway (openEHR Editor)","SB Bhattacharyya, Bhattacharyyas Clinical Records Research & Informatics LLP, India","Yexuan Cheng, 浙江大学, China","Are Edvardsen, SKDE, Helse Nord RHF, Norway","Alexander Eikrem-Lüthi, Lovisenberg Diakonale Sykehus, Norway","Kåre Flø, DIPS ASA, Norway","Grant Forrest, Lunaria Ltd, United Kingdom","Heather Grain, Llewelyn Grain Informatics, Australia","Anca Heyd, DIPS ASA, Norway","Joost Holslag, Nedap, Netherlands","Evelyn Hovenga, EJSH Consulting, Australia","Mikkel Johan Gaup Grønmo, Forvaltningssenter EPJ, Helse Nord RHF, Norway (Nasjonal IKT redaktør)","Liv Laugen, ​Oslo University Hospital, Norway, Norway","Heather Leslie, Atomica Informatics, Australia (openEHR Editor)","Ian McNicoll, freshEHR Clinical Informatics, UK","Mikael Nyström, Cambio Healthcare Systems AB, Sweden","Vanessa Pereira, Better - Pathfinder, Portugal","Andre Smitt-Ingebretsen, Sørlandet sykehus HF, Norway","Natalia Strauch, Medizinische Hochschule Hannover, Germany","Norwegian Review Summary, Nasjonal IKT HF, Norway","John Tore Valand, Helse Bergen, Norway (openEHR Editor)","Marit Alice Venheim, Helse Vest IKT, Norway (openEHR Editor)">
+	details = <
+		["de"] = <
+			language = <[ISO_639-1::de]>
+			purpose = <"*To create a framework for recording answers about symptoms or signs, to the questions of a pre-defined screening questionnaire. (en)">
+			use = <"*Use to create a framework for recording answers to pre-defined screening questions about symptoms or signs.
+
+Common use cases include, but are not limited to:
+- Systematic inquiry in any consultation, for example:
+--- Do you have headaches? Yes, No, Unknown.
+--- Have you had dizziness in the past four weeks? Yes, No, Unknown.
+- Specific questioning related to disease surveillance.
+
+The semantics of this archetype are intentionally loose, and querying this archetype would normally only be useful or safe within the context of each specific template. In a template, each data element would usually be renamed to the specific question asked. Where value sets have been proposed for common use cases, these can be adapted for local use by using the 'text' choice to match each specific use case.
+
+In use cases where it's important to differentiate the time context of a question in the persisted data, the reference model EVENT structure can be used to record this difference. For questions specifically about the point in time of recording, use a point in time EVENT, for example \"Are you dizzy now?\". In contrast, for questions specifically about a period of time, use the interval event, for example, \"Have you had any dizziness in the past 4 weeks?\".
+
+The source of the information in a questionnaire response may vary in different contexts but can be specifically identified using the 'Information provider' element in the Reference Model.
+
+This archetype has been designed to be used as a screening tool or to record simple questionnaire-format data for use in situations such as a disease registry. If the screening questionnaire identifies the presence of a symptom or sign, it is recommended that clinical system record and persist the specific details about the symptom or sign using the CLUSTER.symptom_sign archetype nested within the Additional details SLOT in this archetype. (en)">
+			misuse = <"*Not to be used to record details about the presence or absence of a symptom, outside of a screening context. Use CLUSTER.symptom_sign or CLUSTER.exclusion_symptom_sign for these purposes. (en)">
+		>
+		["fi"] = <
+			language = <[ISO_639-1::fi]>
+			purpose = <"*To create a framework for recording answers about symptoms or signs, to the questions of a pre-defined screening questionnaire. (en)">
+			use = <"*Use to create a framework for recording answers to pre-defined screening questions about symptoms or signs.
+
+Common use cases include, but are not limited to:
+- Systematic inquiry in any consultation, for example:
+--- Do you have headaches? Yes, No, Unknown.
+--- Have you had dizziness in the past four weeks? Yes, No, Unknown.
+- Specific questioning related to disease surveillance.
+
+The semantics of this archetype are intentionally loose, and querying this archetype would normally only be useful or safe within the context of each specific template. In a template, each data element would usually be renamed to the specific question asked. Where value sets have been proposed for common use cases, these can be adapted for local use by using the 'text' choice to match each specific use case.
+
+In use cases where it's important to differentiate the time context of a question in the persisted data, the reference model EVENT structure can be used to record this difference. For questions specifically about the point in time of recording, use a point in time EVENT, for example \"Are you dizzy now?\". In contrast, for questions specifically about a period of time, use the interval event, for example, \"Have you had any dizziness in the past 4 weeks?\".
+
+The source of the information in a questionnaire response may vary in different contexts but can be specifically identified using the 'Information provider' element in the Reference Model.
+
+This archetype has been designed to be used as a screening tool or to record simple questionnaire-format data for use in situations such as a disease registry. If the screening questionnaire identifies the presence of a symptom or sign, it is recommended that clinical system record and persist the specific details about the symptom or sign using the CLUSTER.symptom_sign archetype nested within the Additional details SLOT in this archetype. (en)">
+			misuse = <"*Not to be used to record details about the presence or absence of a symptom, outside of a screening context. Use CLUSTER.symptom_sign or CLUSTER.exclusion_symptom_sign for these purposes. (en)">
+		>
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			purpose = <"*To create a framework for recording answers to pre-defined screening questions about symptoms or signs.(en)">
+			use = <"*Use to create a framework for recording answers to pre-defined screening questions about symptoms or signs.
+
+Common use cases include, but are not limited to:
+- Systematic inquiry in any consultation, for example:
+--- Do you have headaches? Yes, No, Unknown.
+--- Have you had dizziness in the past four weeks? Yes, No, Unknown.
+- Specific questioning related to disease surveillance.
+
+The semantics of this archetype are intentionally loose, and querying this archetype would normally only be useful or safe within the context of each specific template. In a template, each data element would usually be renamed to the specific question asked. Where value sets have been proposed for common use cases, these can be adapted for local use by using the 'text' choice to match each specific use case.
+
+In use cases where it's important to differentiate the time context of a question in the persisted data, the reference model EVENT structure can be used to record this difference. For questions specifically about the point in time of recording, use a point in time EVENT, for example \"Are you dizzy now?\". In contrast, for questions specifically about a period of time, use the interval event, for example, \"Have you had any dizziness in the past 4 weeks?\".
+
+The source of the information in a questionnaire response may vary in different contexts but can be specifically identified using the 'Information provider' element in the Reference Model.
+
+This archetype has been designed to be used as a screening tool or to record simple questionnaire-format data for use in situations such as a disease registry. If the screening questionnaire identifies the presence of a symptom or sign, it is recommended that clinical system record and persist the specific details about the symptom or sign using the CLUSTER.symptom_sign archetype nested within the Additional details SLOT in this archetype. (en)">
+			misuse = <"*Not to be used to record details about the presence or absence of a symptom, outside of a screening context. Use CLUSTER.symptom_sign or CLUSTER.exclusion_symptom_sign for these purposes. (en)">
+		>
+		["nb"] = <
+			language = <[ISO_639-1::nb]>
+			purpose = <"For å lage et rammeverk for registrering av svar på forhåndsdefinerte spørsmål om symptomer eller sykdomstegn.">
+			keywords = <"intervjuskjema, kartlegging", ...>
+			use = <"Brukes for å lage et rammeverk for registrering av svar på forhåndsdefinerte spørsmål om symptomer eller sykdomstegn.
+
+Vanlige bruksområder inkluderer, men er ikke begrenset til:
+- Systematiske spørsmål ved konsultasjoner, for eksempel:
+--- Har du hodepine? Ja, Nei, Ukjent.
+--- Har du vært plaget med svimmelhet de siste fire ukene? Ja, Nei, Ukjent.
+- Spesifikke spørsmål relatert til overvåkning av sykdommer.
+
+Semantikken til denne arketypen er med vilje løst definert, og spørringer etter data i denne arketypen vil normalt bare være nyttig eller trygt innenfor konteksten av hvert spesifikke templat. I et templat vil hvert dataelement vanligvis døpes om til det spesifikke spørsmålet. Der det er foreslått verdisett for vanlige brukstilfeller, kan disse tilpasses for lokal bruk ved å bruke 'tekst'-datatypen for å matche hvert enkelt brukstilfelle.
+
+I tilfeller der det er viktig å skille tid i konteksten av spørsmål i de persisterte dataene, kan referansemodellens EVENT-struktur brukes for å registrere denne variasjonen. For spørsmål som spesifikt handler om tidspunktet ved registrering, bruk tidspunkt (point in time) EVENT. For eksempel: \"Har du hodepine?\". Spørsmål som spesifikt omhandler en tidsperiode, bruk et intervall (interval) EVENT. For eksempel: \"Har du vært plaget med svimmelhet de siste fire ukene?\".
+
+Kilden til informasjonen i et spørreskjema kan variere i ulike kontekster, men kan identifiseres spesifikt ved å benytte \"Information provider\" elementet i openEHR referansemodellen.
+
+Denne arketypen er laget for å bli brukt i et spørreskjema eller for å registrere enkle strukturerte data til for eksempel et sykdomsregister. Dersom det i spørreskjemaet identifiseres at et symptom er tilstede, anbefales det at spesifikke detaljer om symptomet registreres og lagres i pasientjournalen i arketypen Symptom/sykdomstegn (CLUSTER.symptom_sign) nøstet i SLOTet \"Ytterligere detaljer\" i denne arketypen.">
+			misuse = <"Brukes ikke for å registrere detaljer om tilstedeværelse eller fravær av et symptom utenfor konteksten av kartleggingen. Bruk arketypen CLUSTER.symptom_sign eller CLUSTER.exclusion_symptom_sign for dette formålet.">
+		>
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To create a framework for recording answers to pre-defined screening questions about symptoms or signs.">
+			use = <"Use to create a framework for recording answers to pre-defined screening questions about symptoms or signs.
+
+Common use cases include, but are not limited to:
+- Systematic inquiry in any consultation, for example:
+--- Do you have headaches? Yes, No, Unknown.
+--- Have you had dizziness in the past four weeks? Yes, No, Unknown.
+- Specific questioning related to disease surveillance.
+
+The semantics of this archetype are intentionally loose, and querying this archetype would normally only be useful or safe within the context of each specific template. In a template, each data element would usually be renamed to the specific question asked. Where value sets have been proposed for common use cases, these can be adapted for local use by using the 'text' choice to match each specific use case.
+
+In use cases where it's important to differentiate the time context of a question in the persisted data, the reference model EVENT structure can be used to record this difference. For questions specifically about the point in time of recording, use a point in time EVENT, for example \"Are you dizzy now?\". In contrast, for questions specifically about a period of time, use the interval event, for example, \"Have you had any dizziness in the past 4 weeks?\".
+
+The source of the information in a questionnaire response may vary in different contexts but can be specifically identified using the 'Information provider' element in the Reference Model.
+
+This archetype has been designed to be used as a screening tool or to record simple questionnaire-format data for use in situations such as a disease registry. If the screening questionnaire identifies the presence of a symptom or sign, it is recommended that clinical system record and persist the specific details about the symptom or sign using the CLUSTER.symptom_sign archetype nested within the Additional details SLOT in this archetype.">
+			misuse = <"Not to be used to record details about the presence or absence of a symptom, outside of a screening context. Use CLUSTER.symptom_sign or CLUSTER.exclusion_symptom_sign for these purposes.">
+		>
+		["it"] = <
+			language = <[ISO_639-1::it]>
+			purpose = <"*To create a framework for recording answers about symptoms or signs, to the questions of a pre-defined screening questionnaire. (en)">
+			use = <"*Use to create a framework for recording answers to pre-defined screening questions about symptoms or signs.
+
+Common use cases include, but are not limited to:
+- Systematic inquiry in any consultation, for example:
+--- Do you have headaches? Yes, No, Unknown.
+--- Have you had dizziness in the past four weeks? Yes, No, Unknown.
+- Specific questioning related to disease surveillance.
+
+The semantics of this archetype are intentionally loose, and querying this archetype would normally only be useful or safe within the context of each specific template. In a template, each data element would usually be renamed to the specific question asked. Where value sets have been proposed for common use cases, these can be adapted for local use by using the 'text' choice to match each specific use case.
+
+In use cases where it's important to differentiate the time context of a question in the persisted data, the reference model EVENT structure can be used to record this difference. For questions specifically about the point in time of recording, use a point in time EVENT, for example \"Are you dizzy now?\". In contrast, for questions specifically about a period of time, use the interval event, for example, \"Have you had any dizziness in the past 4 weeks?\".
+
+The source of the information in a questionnaire response may vary in different contexts but can be specifically identified using the 'Information provider' element in the Reference Model.
+
+This archetype has been designed to be used as a screening tool or to record simple questionnaire-format data for use in situations such as a disease registry. If the screening questionnaire identifies the presence of a symptom or sign, it is recommended that clinical system record and persist the specific details about the symptom or sign using the CLUSTER.symptom_sign archetype nested within the Additional details SLOT in this archetype. (en)">
+			misuse = <"*Not to be used to record details about the presence or absence of a symptom, outside of a screening context. Use CLUSTER.symptom_sign or CLUSTER.exclusion_symptom_sign for these purposes. (en)">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["MD5-CAM-1.0.1"] = <"D589AB6E362AB3BD4D5030712844CF4F">
+		["build_uid"] = <"98713138-57eb-4304-b868-38ad5c7c47c0">
+		["ip_acknowledgements"] = <"This artefact includes content from SNOMED Clinical Terms® (SNOMED CT®) which is copyrighted material of the International Health Terminology Standards Development Organisation (IHTSDO). Where an implementation of this artefact makes use of SNOMED CT content, the implementer must have the appropriate SNOMED CT Affiliate license - for more information contact http://www.snomed.org/snomed-ct/get-snomedct or info@snomed.org.">
+		["revision"] = <"0.0.1-alpha">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- Symptom/sign screening questionnaire
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {0..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0034] occurrences matches {0..1} matches {    -- Screening purpose
+										value matches {
+											DV_TEXT matches {*}
+										}
+									}
+									ELEMENT[at0028] occurrences matches {0..*} matches {    -- Any symptoms or signs?
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0031,    -- Yes
+													at0032,    -- No
+													at0033]    -- Unknown
+												}
+											}
+											DV_TEXT matches {*}
+										}
+									}
+									ELEMENT[at0029] occurrences matches {0..*} matches {    -- Onset
+										value matches {
+											DV_DATE_TIME matches {*}
+											DV_INTERVAL<DV_DATE_TIME> matches {*}
+											DV_TEXT matches {*}
+											DV_DURATION matches {*}
+											DV_INTERVAL<DV_DURATION> matches {*}
+										}
+									}
+									ELEMENT[at0036] occurrences matches {0..1} matches {    -- Description
+										value matches {
+											DV_TEXT matches {*}
+										}
+									}
+									CLUSTER[at0022] occurrences matches {0..*} matches {    -- Specific symptom/sign
+										items cardinality matches {1..*; unordered} matches {
+											ELEMENT[at0004] matches {    -- Symptom/sign name
+												value matches {
+													DV_TEXT matches {*}
+												}
+											}
+											ELEMENT[at0005] occurrences matches {0..1} matches {    -- Presence?
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {
+															[local::
+															at0023,    -- Yes
+															at0024,    -- No
+															at0027]    -- Unknown
+														}
+													}
+													DV_TEXT matches {*}
+												}
+											}
+											ELEMENT[at0037] occurrences matches {0..*} matches {    -- Onset
+												value matches {
+													DV_DURATION matches {*}
+													DV_INTERVAL<DV_DURATION> matches {*}
+													DV_DATE_TIME matches {*}
+													DV_INTERVAL<DV_DATE_TIME> matches {*}
+													DV_TEXT matches {*}
+												}
+											}
+											allow_archetype CLUSTER[at0026] occurrences matches {0..*} matches {    -- Additional details
+												include
+													archetype_id/value matches {/openEHR-EHR-CLUSTER\.symptom_sign(-[a-zA-Z0-9_]+)*\.v1|openEHR-EHR-CLUSTER\.exclusion_symptom_sign\.v0/}
+											}
+											ELEMENT[at0035] occurrences matches {0..1} matches {    -- Comment
+												value matches {
+													DV_TEXT matches {*}
+												}
+											}
+										}
+									}
+									allow_archetype CLUSTER[at0039] occurrences matches {0..*} matches {    -- Additional details
+										include
+											archetype_id/value matches {/.*/}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		protocol matches {
+			ITEM_TREE[at0007] matches {    -- Item tree
+				items cardinality matches {0..*; unordered} matches {
+					allow_archetype CLUSTER[at0021] occurrences matches {0..*} matches {    -- Extension
+						include
+							archetype_id/value matches {/.*/}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	terminologies_available = <"SNOMED-CT", ...>
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Symptom/sign screening questionnaire">
+					description = <"Answers to pre-defined screening questions about symptoms or signs.">
+					comment = <"The answers may be self-reported.">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Symptom/sign name">
+					description = <"Identification of a specific symptom or sign or grouping of symptoms or signs, by name.">
+					comment = <"Coding of the 'Symptom/sign name' with a terminology is preferred, where possible.">
+				>
+				["at0005"] = <
+					text = <"Presence?">
+					description = <"Presence of the specific symptom or sign or grouping of symptoms or signs.">
+				>
+				["at0007"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0021"] = <
+					text = <"Extension">
+					description = <"Additional information required to extend the model with local content or to align with other reference models or formalisms.">
+					comment = <"For example: local information requirements; or additional metadata to align with FHIR.">
+				>
+				["at0022"] = <
+					text = <"Specific symptom/sign">
+					description = <"Details about a specific symptom or sign or grouping of symptoms or signs related to the screening purpose.">
+				>
+				["at0023"] = <
+					text = <"Yes">
+					description = <"The specific symptom or sign is present.">
+				>
+				["at0024"] = <
+					text = <"No">
+					description = <"The specific symptom or sign is not present.">
+				>
+				["at0026"] = <
+					text = <"Additional details">
+					description = <"Structured details or questions about the specific symptom or sign.">
+				>
+				["at0027"] = <
+					text = <"Unknown">
+					description = <"It is not known whether the symptom or sign is present or absent.">
+				>
+				["at0028"] = <
+					text = <"Any symptoms or signs?">
+					description = <"Presence of symptoms or signs related to the screening purpose.">
+				>
+				["at0029"] = <
+					text = <"Onset">
+					description = <"Timing of the initial recognition of the symptoms or signs.">
+					comment = <"The 'Onset' data element is deliberately loosely modelled to support the myriad of ways that it can be used in questionnaires to capture the onset of symptoms or signs. The specific and intended semantics can be further clarified in a template. 
+
+For example:
+Date/time for the date the symptom started. Interval of date/time for a period of time eg. between 1940 and 1942. Text for descriptions like 'Immediately after the operation', or 'Up to one week ago', 'Up to two weeks ago', 'Three weeks ago'. Duration for the individual's age at the onset. Interval of Duration for the approximate age of the individual at the time of onset.">
+				>
+				["at0031"] = <
+					text = <"Yes">
+					description = <"Symptoms or signs are present.">
+				>
+				["at0032"] = <
+					text = <"No">
+					description = <"Symptoms or signs are not present.">
+				>
+				["at0033"] = <
+					text = <"Unknown">
+					description = <"It is not known whether any symptoms or signs are present or absent.">
+				>
+				["at0034"] = <
+					text = <"Screening purpose">
+					description = <"The context or reason for screening.">
+					comment = <"This data element is intended to provide collection context for the question/answer groups when queried at a later date. It is not expected that this data element will be exposed to the individual, but only stored in data.
+For example: 'pre-admission screening' or the name of the actual questionnaire.">
+				>
+				["at0035"] = <
+					text = <"Comment">
+					description = <"Additional narrative about the specific symptom/sign question, not captured in other fields.">
+				>
+				["at0036"] = <
+					text = <"Description">
+					description = <"Narrative description about the presence of any symptoms or signs.">
+				>
+				["at0037"] = <
+					text = <"Onset">
+					description = <"Timing of the initial recognition of the symptom or sign.">
+					comment = <"The 'Onset' data element is deliberately loosely modelled to support the myriad of ways that it can be used in questionnaires to capture the onset of symptoms or signs. The specific and intended semantics can be further clarified in a template. 
+
+For example:
+Date/time for the date the symptom started. Interval of date/time for a period of time eg. between 1940 and 1942. Text for descriptions like 'Immediately after the operation', or 'Up to one week ago', 'Up to two weeks ago', 'Three weeks ago'. Duration for the individual's age at the onset. Interval of Duration for the approximate age of the individual at the time of onset.">
+				>
+				["at0039"] = <
+					text = <"Additional details">
+					description = <"Structured details or questions about screening for symptoms or signs.">
+				>
+			>
+		>
+		["fi"] = <
+			items = <
+				["at0000"] = <
+					text = <"Oire / tuntemus seulontakysely">
+					description = <"*Answers to questions about symptoms or signs in a pre-defined screening questionnaire. (en)">
+					comment = <"*The answers may be self-reported. (en)">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"*Any event(en)">
+					description = <"*Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.(en)">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"*Symptom/sign name (en)">
+					description = <"*Identification of a specific symptom or sign or grouping of symptoms or signs, by name. (en)">
+					comment = <"*Coding of the 'Symptom/sign name' with a terminology is preferred, where possible. (en)">
+				>
+				["at0005"] = <
+					text = <"Olemassalolo">
+					description = <"*Presence of the specific symptom or sign or grouping of symptoms or signs.
+ (en)">
+				>
+				["at0007"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0021"] = <
+					text = <"*Extension(en)">
+					description = <"*Additional information required to extend the model with local content or to align with other reference models or formalisms. (en)">
+					comment = <"*For example: local information requirements; or additional metadata to align with FHIR. (en)">
+				>
+				["at0022"] = <
+					text = <"Oire / tuntemus ryhmitys">
+					description = <"*Details about a specific symptom or sign or grouping of symptoms or signs related to the screening purpose. (en)">
+				>
+				["at0023"] = <
+					text = <"*Yes (en)">
+					description = <"Yksilöity oire on olemassa / havaittavissa">
+				>
+				["at0024"] = <
+					text = <"*No (en)">
+					description = <"Yksilöityä oiretta ei ole havaittavissa / olemassa">
+				>
+				["at0026"] = <
+					text = <"*Additional details (en)">
+					description = <"*Structured details or questions about the specific symptom or sign. (en)">
+				>
+				["at0027"] = <
+					text = <"Unknown">
+					description = <"*It is unknown whether any symptoms or signs are present or absent.(en)">
+				>
+				["at0028"] = <
+					text = <"*Any symptoms or signs? (en)">
+					description = <"*Presence of symptoms or signs related to the screening purpose. (en)">
+				>
+				["at0029"] = <
+					text = <"Toteamisen ajankohta">
+					description = <"*Timing of the initial recognition of the symptoms or signs. (en)">
+					comment = <"*The 'Onset' data element is deliberately loosely modelled to support the myriad of ways that it can be used in questionnaires to capture the onset of symptoms or signs. The specific and intended semantics can be further clarified in a template. 
+For example:
+-Date: The date when the symptom started.
+-Interval of date/time: A period of time eg. between 
+ 1940 and 1942.
+-Text: 'Immediately after the operation', or 'Up to one week ago', 'Up to two weeks ago', 'Three weeks ago'.
+-Duration:  The individuals age at the time of onset.
+-Interval of Duration: The approximate age of the individual at the time of onset. (en)">
+				>
+				["at0031"] = <
+					text = <"*Yes (en)">
+					description = <"Oire / tuntemus on olemassa">
+				>
+				["at0032"] = <
+					text = <"*No (en)">
+					description = <"Oire / tuntemusta ei ole olemassa">
+				>
+				["at0033"] = <
+					text = <"Unknown">
+					description = <"*It is unknown whether any symptoms or signs are present or absent.(en)">
+				>
+				["at0034"] = <
+					text = <"*Screening purpose(en)">
+					description = <"*The context or reason for screening. (en)">
+					comment = <"*For example: pre-admission screening or the name of the actual questionnaire. (en)">
+				>
+				["at0035"] = <
+					text = <"*Comment(en)">
+					description = <"*Additional narrative about the specific symptom/sign question, not captured in other fields. (en)">
+				>
+				["at0036"] = <
+					text = <"*Description(en)">
+					description = <"*Narrative description about the presence of any symptoms or signs. (en)">
+				>
+				["at0039"] = <
+					text = <"*Additional details (en)">
+					description = <"*Structured details or questions about screening for symptoms or signs. (en)">
+				>
+				["at0037"] = <
+					text = <"*Onset (en)">
+					description = <"*Timing of the initial recognition of the symptom or sign. (en)">
+					comment = <"*The 'Onset' data element is deliberately loosely modelled to support the myriad of ways that it can be used in questionnaires to capture the onset of a symptom or sign. The specific and intended semantics can be further clarified in a template.
+The 'Onset' data element is deliberately loosely modelled to support the myriad of ways that it can be used in questionnaires to capture the onset of a problem or the timing of a diagnosis. The specific and intended semantics can be further clarified in a template. 
+For example:
+-Date: The date diagnosis
+-Interval of date/time: A period of time eg. between 
+ 1940 and 1942.
+-Text: 'Immediately after the operation', or 'Up to one week ago', 'Up to two weeks ago', 'Three weeks ago'.
+-Duration:  The individuals age at the time of onset.
+-Interval of Duration: The approximate age of the individual at the time of onset. (en)">
+				>
+			>
+		>
+		["nb"] = <
+			items = <
+				["at0000"] = <
+					text = <"Spørreskjema om symptomer/sykdomstegn">
+					description = <"Svar på forhåndsdefinerte spørsmål om symptomer eller sykdomstegn.">
+					comment = <"Svarene kan være selvrapporterte.">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Uspesifisert hendelse">
+					description = <"Standard, uspesifisert tidspunkt eller tidsintervall som kan defineres mer eksplisitt i et templat eller i en applikasjon.">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Navn på symptom/sykdomstegn">
+					description = <"Navn på det spesifikke symptomet eller sykdomstegnet; eller gruppen av symptomer eller sykdomstegn.">
+					comment = <"Navnet på symptom/sykdomstegn bør kodes med en terminologi om mulig.">
+				>
+				["at0005"] = <
+					text = <"Tilstede?">
+					description = <"Tilstedeværelse av symptomet eller sykdomstegnet eller gruppen av symptomer eller sykdomstegn.">
+				>
+				["at0007"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0021"] = <
+					text = <"Tilleggsinformasjon">
+					description = <"Ytterligere informasjon som trengs for å kunne registrere lokalt definert innhold eller for å tilpasse til andre referansemodeller/formalismer.">
+					comment = <"For eksempel lokale informasjonsbehov eller ytterligere metadata for å kunne tilpasse til tilsvarende konsepter i FHIR.">
+				>
+				["at0022"] = <
+					text = <"Spesifikt symptom/sykdomstegn">
+					description = <"Detaljer om et spesifikt symptom eller sykdomstegn, eller gruppe av symptomer eller sykdomstegn relatert til kartleggingsformålet.">
+				>
+				["at0023"] = <
+					text = <"Ja">
+					description = <"Det spesifikke symptomet eller sykdomstegnet er tilstede.">
+				>
+				["at0024"] = <
+					text = <"Nei">
+					description = <"Det spesifikke symptomet eller sykdomstegnet er ikke tilstede.">
+				>
+				["at0026"] = <
+					text = <"Ytterligere detaljer">
+					description = <"Strukturerte detaljer eller spørsmål om det spesifikke problemet eller diagnosen.">
+				>
+				["at0027"] = <
+					text = <"Usikker">
+					description = <"Det er usikkert om symptomet eller sykdomstegnet er tilstede eller fraværende.">
+				>
+				["at0028"] = <
+					text = <"Tilstedeværelse av symptomer eller sykdomstegn?">
+					description = <"Tilstedeværelse av symptomer eller sykdomstegn relatert til kartleggingsformålet.">
+				>
+				["at0029"] = <
+					text = <"Debut">
+					description = <"Tidsrommet da en først oppdaget symptomene eller sykdomstegene.">
+					comment = <"Dataelementet \"Debut\" er løst modellert for å støtte ulike måter spørsmål om tidsrom for debut av et symptom eller sykdomstegn stilles i et spørreskjema. Den spesifikke og tiltenkte semantikken defineres i et templat. 
+For eksempel: Dato/klokkeslett brukes for dato for når symptomene først ble oppdaget. Intervall av dato/ klokkeslett brukes for å sette en tidsperiode, for eksempel mellom 1940 og 1942. Tekst brukes for spørsmålstillinger som \"Rett etter en operasjon\", \"For en uke siden\", \"Opp til to uker siden\", \"Tre uker siden. Varighet brukes for å registrere individets alder ved debut. Intervall av varighet får å registrere tilnærmet alder ved debut.">
+				>
+				["at0031"] = <
+					text = <"Ja">
+					description = <"Symptomer eller sykdomstegn er tilstede.">
+				>
+				["at0032"] = <
+					text = <"Nei">
+					description = <"Symptomer eller sykdomstegn er ikke tilstede.">
+				>
+				["at0033"] = <
+					text = <"Usikker">
+					description = <"Det er usikkert om noen symptomer eller sykdomstegn er til stede eller fraværende.">
+				>
+				["at0034"] = <
+					text = <"Kartleggingsformål">
+					description = <"Konteksten eller årsaken for kartleggingen.">
+					comment = <"Dette dataelementet er ment for å sette en kontekst for spørsmålene om man senere ønsker å gjøre spørringer på dataene. Det er ikke forventet at dette dataelementet skal være synlig for en bruker av skjemaet, men kun tilgjengelig i de lagrede dataene. 
+For eksempel: \"Pre operativ screening\" eller navnet på det faktiske spørreskjemaet.">
+				>
+				["at0035"] = <
+					text = <"Kommentar">
+					description = <"Ytterligere fritekst om det spesifikke symptomet eller sykdomstegnet som ikke er omfattet av andre felt.">
+				>
+				["at0036"] = <
+					text = <"Beskrivelse">
+					description = <"Fritekstbeskrivelse om tilstedeværelse av symptomer eller sykdomstegn.">
+				>
+				["at0037"] = <
+					text = <"Debut">
+					description = <"Tidsrommet da en oppdaget symptomet eller sykdomstegnet.">
+					comment = <"Dataelementet \"Debut\" er løst modellert for å støtte ulike måter spørsmål om tidsrom for debut av et symptom eller sykdomstegn stilles i et spørreskjema. Den spesifikke og tiltenkte semantikken defineres i et templat. 
+For eksempel: Dato/klokkeslett brukes for dato for når symptomet først ble oppdaget. Intervall av dato/ klokkeslett brukes for å sette en tidsperiode, for eksempel mellom 1940 og 1942. Tekst brukes for spørsmålstillinger som \"Rett etter en operasjon\", \"For en uke siden\", \"Opp til to uker siden\", \"Tre uker siden. Varighet brukes for å registrere individets alder ved debut. Intervall av varighet får å registrere tilnærmet alder ved debut.">
+				>
+				["at0039"] = <
+					text = <"Ytterligere detaljer">
+					description = <"Strukturerte detaljer eller spørsmål om kartleggingen av problemer eller diagnoser.">
+				>
+			>
+		>
+		["de"] = <
+			items = <
+				["at0000"] = <
+					text = <"Screening-Fragebogen zur Symptomen/Anzeichen">
+					description = <"*Answers to questions about symptoms or signs in a pre-defined screening questionnaire. (en)">
+					comment = <"*The answers may be self-reported. (en)">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Beliebiges Ereignis">
+					description = <"Standardwert, ein undefinierter/s Zeitpunkt oder Intervallereignis, das explizit im Template oder zur Laufzeit der Anwendung definiert werden kann.">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"*Symptom/sign name (en)">
+					description = <"*Identification of a specific symptom or sign or grouping of symptoms or signs, by name. (en)">
+					comment = <"*Coding of the 'Symptom/sign name' with a terminology is preferred, where possible. (en)">
+				>
+				["at0005"] = <
+					text = <"Vorhanden?">
+					description = <"*Presence of the specific symptom or sign or grouping of symptoms or signs.
+ (en)">
+				>
+				["at0007"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0021"] = <
+					text = <"Erweiterung">
+					description = <"*Additional information required to extend the model with local content or to align with other reference models or formalisms. (en)">
+					comment = <"*For example: local information requirements; or additional metadata to align with FHIR. (en)">
+				>
+				["at0022"] = <
+					text = <"Spezifisches Symptom/Anzeichen">
+					description = <"*Details about a specific symptom or sign or grouping of symptoms or signs related to the screening purpose. (en)">
+				>
+				["at0023"] = <
+					text = <"*Yes (en)">
+					description = <"Das spezifische Symptom oder Anzeichen ist vorhanden.">
+				>
+				["at0024"] = <
+					text = <"*No (en)">
+					description = <"Das spezifische Symptom oder Anzeichen ist nicht vorhanden.">
+				>
+				["at0026"] = <
+					text = <"*Additional details (en)">
+					description = <"*Structured details or questions about the specific symptom or sign. (en)">
+				>
+				["at0027"] = <
+					text = <"Unbekannt">
+					description = <"Es ist nicht bekannt, ob das Symptom oder Anzeichen vorhanden ist oder nicht.">
+				>
+				["at0028"] = <
+					text = <"*Any symptoms or signs? (en)">
+					description = <"*Presence of symptoms or signs related to the screening purpose. (en)">
+				>
+				["at0029"] = <
+					text = <"Auftreten von Symptomen oder Anzeichen">
+					description = <"*Timing of the initial recognition of the symptoms or signs. (en)">
+					comment = <"*The 'Onset' data element is deliberately loosely modelled to support the myriad of ways that it can be used in questionnaires to capture the onset of symptoms or signs. The specific and intended semantics can be further clarified in a template. 
+For example:
+-Date: The date when the symptom started.
+-Interval of date/time: A period of time eg. between 
+ 1940 and 1942.
+-Text: 'Immediately after the operation', or 'Up to one week ago', 'Up to two weeks ago', 'Three weeks ago'.
+-Duration:  The individuals age at the time of onset.
+-Interval of Duration: The approximate age of the individual at the time of onset. (en)">
+				>
+				["at0031"] = <
+					text = <"*Yes (en)">
+					description = <"Symptome oder Anzeichen sind vorhanden.">
+				>
+				["at0032"] = <
+					text = <"*No (en)">
+					description = <"Keine Symptome oder Anzeichen sind vorhanden.">
+				>
+				["at0033"] = <
+					text = <"Unbekannt">
+					description = <"Es ist nicht bekannt, ob Symptome oder Anzeichen vorhanden sind oder nicht.">
+				>
+				["at0034"] = <
+					text = <"Zweck des Screenings">
+					description = <"*The context or reason for screening. (en)">
+					comment = <"*For example: pre-admission screening or the name of the actual questionnaire. (en)">
+				>
+				["at0035"] = <
+					text = <"Kommentar">
+					description = <"*Additional narrative about the specific symptom/sign question, not captured in other fields. (en)">
+				>
+				["at0036"] = <
+					text = <"Beschreibung">
+					description = <"*Narrative description about the presence of any symptoms or signs. (en)">
+				>
+				["at0039"] = <
+					text = <"*Additional details (en)">
+					description = <"*Structured details or questions about screening for symptoms or signs. (en)">
+				>
+				["at0037"] = <
+					text = <"*Onset (en)">
+					description = <"*Timing of the initial recognition of the symptom or sign. (en)">
+					comment = <"*The 'Onset' data element is deliberately loosely modelled to support the myriad of ways that it can be used in questionnaires to capture the onset of a symptom or sign. The specific and intended semantics can be further clarified in a template.
+The 'Onset' data element is deliberately loosely modelled to support the myriad of ways that it can be used in questionnaires to capture the onset of a problem or the timing of a diagnosis. The specific and intended semantics can be further clarified in a template. 
+For example:
+-Date: The date diagnosis
+-Interval of date/time: A period of time eg. between 
+ 1940 and 1942.
+-Text: 'Immediately after the operation', or 'Up to one week ago', 'Up to two weeks ago', 'Three weeks ago'.
+-Duration:  The individuals age at the time of onset.
+-Interval of Duration: The approximate age of the individual at the time of onset. (en)">
+				>
+			>
+		>
+		["it"] = <
+			items = <
+				["at0000"] = <
+					text = <"Questionario di screening dei sintomi/segni">
+					description = <"*Answers to questions about symptoms or signs in a pre-defined screening questionnaire. (en)">
+					comment = <"*The answers may be self-reported. (en)">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Qualsiasi evento">
+					description = <"Evento predefinito, non specificato nel tempo o nell'intervallo di tempo, che può essere definito esplicitamente in un modello o in fase di esecuzione.">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"*Symptom/sign name (en)">
+					description = <"*Identification of a specific symptom or sign or grouping of symptoms or signs, by name. (en)">
+					comment = <"*Coding of the 'Symptom/sign name' with a terminology is preferred, where possible. (en)">
+				>
+				["at0005"] = <
+					text = <"Presenza?">
+					description = <"*Presence of the specific symptom or sign or grouping of symptoms or signs.
+ (en)">
+				>
+				["at0007"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0021"] = <
+					text = <"Estensione">
+					description = <"*Additional information required to extend the model with local content or to align with other reference models or formalisms. (en)">
+					comment = <"*For example: local information requirements; or additional metadata to align with FHIR. (en)">
+				>
+				["at0022"] = <
+					text = <"Sintomo/segno specifico">
+					description = <"*Details about a specific symptom or sign or grouping of symptoms or signs related to the screening purpose. (en)">
+				>
+				["at0023"] = <
+					text = <"*Yes (en)">
+					description = <"Il sintomo o segno specifico è presente.">
+				>
+				["at0024"] = <
+					text = <"*No (en)">
+					description = <"Il sintomo o segno specifico non è presente.">
+				>
+				["at0026"] = <
+					text = <"*Additional details (en)">
+					description = <"*Structured details or questions about the specific symptom or sign. (en)">
+				>
+				["at0027"] = <
+					text = <"Indeterminato">
+					description = <"Non è possibile sapere se il sintomo o il segno è presente o assente.">
+				>
+				["at0028"] = <
+					text = <"*Any symptoms or signs? (en)">
+					description = <"*Presence of symptoms or signs related to the screening purpose. (en)">
+				>
+				["at0029"] = <
+					text = <"Inizio di qualsiasi sintomo o segno">
+					description = <"*Timing of the initial recognition of the symptoms or signs. (en)">
+					comment = <"*The 'Onset' data element is deliberately loosely modelled to support the myriad of ways that it can be used in questionnaires to capture the onset of symptoms or signs. The specific and intended semantics can be further clarified in a template. 
+For example:
+-Date: The date when the symptom started.
+-Interval of date/time: A period of time eg. between 
+ 1940 and 1942.
+-Text: 'Immediately after the operation', or 'Up to one week ago', 'Up to two weeks ago', 'Three weeks ago'.
+-Duration:  The individuals age at the time of onset.
+-Interval of Duration: The approximate age of the individual at the time of onset. (en)">
+				>
+				["at0031"] = <
+					text = <"*Yes (en)">
+					description = <"Sono presenti sintomi o segni.">
+				>
+				["at0032"] = <
+					text = <"*No (en)">
+					description = <"Non sono presenti sintomi o segni.">
+				>
+				["at0033"] = <
+					text = <"Indeterminato">
+					description = <"Non è possibile sapere se sono presenti o assenti sintomi o segni. ">
+				>
+				["at0034"] = <
+					text = <"Scopo dello screening">
+					description = <"*The context or reason for screening. (en)">
+					comment = <"*For example: pre-admission screening or the name of the actual questionnaire. (en)">
+				>
+				["at0035"] = <
+					text = <"Commento">
+					description = <"*Additional narrative about the specific symptom/sign question, not captured in other fields. (en)">
+				>
+				["at0036"] = <
+					text = <"Descrizione">
+					description = <"*Narrative description about the presence of any symptoms or signs. (en)">
+				>
+				["at0039"] = <
+					text = <"*Additional details (en)">
+					description = <"*Structured details or questions about screening for symptoms or signs. (en)">
+				>
+				["at0037"] = <
+					text = <"*Onset (en)">
+					description = <"*Timing of the initial recognition of the symptom or sign. (en)">
+					comment = <"*The 'Onset' data element is deliberately loosely modelled to support the myriad of ways that it can be used in questionnaires to capture the onset of a symptom or sign. The specific and intended semantics can be further clarified in a template.
+The 'Onset' data element is deliberately loosely modelled to support the myriad of ways that it can be used in questionnaires to capture the onset of a problem or the timing of a diagnosis. The specific and intended semantics can be further clarified in a template. 
+For example:
+-Date: The date diagnosis
+-Interval of date/time: A period of time eg. between 
+ 1940 and 1942.
+-Text: 'Immediately after the operation', or 'Up to one week ago', 'Up to two weeks ago', 'Three weeks ago'.
+-Duration:  The individuals age at the time of onset.
+-Interval of Duration: The approximate age of the individual at the time of onset. (en)">
+				>
+			>
+		>
+		["sv"] = <
+			items = <
+				["at0000"] = <
+					text = <"*Frågeformulär för symptom och andra tecken">
+					description = <"Answers to pre-defined screening questions about symptoms or signs.(en)">
+					comment = <"*The answers may be self-reported.(en)">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Ospecificerad händelse">
+					description = <"Ospecificerad standardhändelse vid en tidpunkt eller inom ett tidsintervall som explicit kan definieras i en mall eller genereras automatiskt av vissa IT-system.">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"*Symptom/sign name (en)">
+					description = <"*Identification of a specific symptom or sign or grouping of symptoms or signs, by name. (en)">
+					comment = <"*Coding of the 'Symptom/sign name' with a terminology is preferred, where possible. (en)">
+				>
+				["at0005"] = <
+					text = <"Närvarande?">
+					description = <"*Presence of the specific symptom or sign or grouping of symptoms or signs.
+ (en)">
+				>
+				["at0007"] = <
+					text = <"Item tree">
+					description = <"@ internal @">
+				>
+				["at0021"] = <
+					text = <"Tilläggsinformation">
+					description = <"Plats för att infoga tilläggsinformation som krävs för lokala anpassningar eller anpassning till andra referensmodeller eller formella krav.">
+					comment = <"Exempelvis lokala informationskrav eller metadata för anpassning till FHIR- eller CIMI-motsvarigheter.">
+				>
+				["at0022"] = <
+					text = <"*Specifika symptom/tecken">
+					description = <"*Details about a specific symptom or sign or grouping of symptoms or signs related to the screening purpose. (en)">
+				>
+				["at0023"] = <
+					text = <"Ja">
+					description = <"Det specifika symptomet eller annat tecken är närvarande.">
+				>
+				["at0024"] = <
+					text = <"Nej">
+					description = <"Det specifika symptomet eller annat tecken är frånvarande.">
+				>
+				["at0026"] = <
+					text = <"*Screeningdetaljer">
+					description = <"*Structured details or questions about the specific symptom or sign.">
+				>
+				["at0027"] = <
+					text = <"Okänt">
+					description = <"Det är inte känt om symptomet eller annat tecken är närvarande eller frånvarande.">
+				>
+				["at0028"] = <
+					text = <"*Any symptoms or signs? (en)">
+					description = <"*Presence of symptoms or signs related to the screening purpose. (en)">
+				>
+				["at0029"] = <
+					text = <"*Debut av symptom eller andra tecken">
+					description = <"*Timing of the initial recognition of the symptoms or signs. (en)">
+					comment = <"*The 'Onset' data element is deliberately loosely modelled to support the myriad of ways that it can be used in questionnaires to capture the onset of symptoms or signs. The specific and intended semantics can be further clarified in a template. 
+For example:
+-Date: The date when the symptom started.
+-Interval of date/time: A period of time eg. between 
+ 1940 and 1942.
+-Text: 'Immediately after the operation', or 'Up to one week ago', 'Up to two weeks ago', 'Three weeks ago'.
+-Duration:  The individuals age at the time of onset.
+-Interval of Duration: The approximate age of the individual at the time of onset. (en)">
+				>
+				["at0031"] = <
+					text = <"Ja">
+					description = <"Symptom eller andra tecken är närvarande.">
+				>
+				["at0032"] = <
+					text = <"Nej">
+					description = <"Symptom eller andra tecken är frånvarande.">
+				>
+				["at0033"] = <
+					text = <"Okänt">
+					description = <"Det är inte känt om några symptom eller andra tecken är närvarande eller frånvarande.">
+				>
+				["at0034"] = <
+					text = <"*Screeningssyfte">
+					description = <"*The context or reason for screening. (en)">
+					comment = <"This data element is intended to provide collection context for the question/answer groups when queried at a later date. It is not expected that this data element will be exposed to the individual, but only stored in data.
+For example: 'pre-admission screening' or the name of the actual questionnaire. (en)">
+				>
+				["at0035"] = <
+					text = <"Kommentar">
+					description = <"*Additional narrative about the specific symptom/sign question, not captured in other fields. (en)">
+				>
+				["at0036"] = <
+					text = <"Beskrivning">
+					description = <"*Narrative description about the presence of any symptoms or signs. (en)">
+				>
+				["at0037"] = <
+					text = <"*Duration">
+					description = <"*Timing of the initial recognition of the symptom or sign. (en)">
+					comment = <"*The 'Onset' data element is deliberately loosely modelled to support the myriad of ways that it can be used in questionnaires to capture the onset of a symptom or sign. The specific and intended semantics can be further clarified in a template.
+The 'Onset' data element is deliberately loosely modelled to support the myriad of ways that it can be used in questionnaires to capture the onset of a problem or the timing of a diagnosis. The specific and intended semantics can be further clarified in a template. 
+For example:
+-Date: The date diagnosis
+-Interval of date/time: A period of time eg. between 
+ 1940 and 1942.
+-Text: 'Immediately after the operation', or 'Up to one week ago', 'Up to two weeks ago', 'Three weeks ago'.
+-Duration:  The individuals age at the time of onset.
+-Interval of Duration: The approximate age of the individual at the time of onset. (en)">
+				>
+				["at0039"] = <
+					text = <"*Additional details (en)">
+					description = <"*Structured details or questions about screening for symptoms or signs. (en)">
+				>
+			>
+		>
+	>
+	term_binding = <
+		["SNOMED-CT"] = <
+			items = <
+				["at0023"] = <[SNOMED-CT::373066001]>
+				["at0024"] = <[SNOMED-CT::373067005]>
+				["at0031"] = <[SNOMED-CT::373066001]>
+				["at0032"] = <[SNOMED-CT::373067005]>
+				["at0033"] = <[SNOMED-CT::261665006]>
+				["at0027"] = <[SNOMED-CT::261665006]>
+			>
+		>
+	>
