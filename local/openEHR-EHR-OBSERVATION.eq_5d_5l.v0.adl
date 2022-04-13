@@ -1,0 +1,272 @@
+archetype (adl_version=1.4; uid=64115239-fbd2-45c7-b5d5-4fd2001b63dd)
+	openEHR-EHR-OBSERVATION.eq_5d_5l.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["date"] = <"2015-11-05">
+		["name"] = <"Ian McNicoll">
+		["organisation"] = <"freshEHR Clinical Informatics Ltd.">
+		["email"] = <"ian@freshehr.com">
+	>
+	lifecycle_state = <"in_development">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"EQ-5D-5L is a standardised measure of health status developed by the EuroQol Group in order to
+provide a simple, generic measure of health for clinical and economic appraisal.">
+			keywords = <"status","eq">
+			copyright = <"© openEHR Foundation">
+			use = <"Applicable to a wide range of health conditions and treatments,  provides a simple descriptive profile and a
+single index value for health status that can be used in the clinical and economic evaluation of health care as
+well as in population health surveys. Further information is available in the User Guide
+http://www.euroqol.org/fileadmin/user_upload/Documenten/PDF/Folders_Flyers/EQ-5D-5L_UserGuide_2015.pdf">
+			misuse = <"Users of the EQ-5D-5L archetype must ensure that they comply with the terms of use of the EuroQol Research Foundation who own the copyright of the original assessment http://www.euroqol.org/eq-5d-products/how-to-obtain-eq-5d.html">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["references"] = <"The EuroQol Group (1990). EuroQol-a new facility for the measurement of health-related
+quality of life. Health Policy 16(3):199-208.">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["MD5-CAM-1.0.1"] = <"641F768C9596863562F3BCA61DFE3EC4">
+		["build_uid"] = <"7867ec57-4b06-47f1-851e-80b86cfe37c2">
+		["revision"] = <"0.0.1-alpha">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- EQ-5D-5L Health status
+		data matches {
+			HISTORY[at0001] matches {    -- Event Series
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..1} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0004] occurrences matches {0..1} matches {    -- Mobility
+										value matches {
+											1|[local::at0005],
+											2|[local::at0012],
+											3|[local::at0013],
+											4|[local::at0014],
+											5|[local::at0015]
+										}
+									}
+									ELEMENT[at0006] occurrences matches {0..1} matches {    -- Self-care
+										value matches {
+											1|[local::at0016],
+											2|[local::at0017],
+											3|[local::at0018],
+											4|[local::at0019],
+											5|[local::at0020]
+										}
+									}
+									ELEMENT[at0007] occurrences matches {0..1} matches {    -- Usual activities
+										value matches {
+											1|[local::at0021],
+											2|[local::at0022],
+											3|[local::at0023],
+											4|[local::at0024],
+											5|[local::at0025]
+										}
+									}
+									ELEMENT[at0008] occurrences matches {0..1} matches {    -- Pain/discomfort
+										value matches {
+											1|[local::at0026],
+											2|[local::at0027],
+											3|[local::at0028],
+											4|[local::at0029],
+											5|[local::at0030]
+										}
+									}
+									ELEMENT[at0009] occurrences matches {0..1} matches {    -- Anxiety/depression
+										value matches {
+											1|[local::at0031],
+											2|[local::at0032],
+											3|[local::at0033],
+											4|[local::at0034],
+											5|[local::at0035]
+										}
+									}
+									ELEMENT[at0011] occurrences matches {0..1} matches {    -- State
+										value matches {
+											DV_TEXT matches {*}
+										}
+									}
+									ELEMENT[at0010] occurrences matches {0..1} matches {    -- Overall health
+										value matches {
+											DV_COUNT matches {
+												magnitude matches {|0..100|}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"EQ-5D-5L Health status">
+					description = <"A standardised measure of health status to provide a simple, generic measure of health for clinical and economic appraisal.">
+				>
+				["at0001"] = <
+					text = <"Event Series">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"*">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Mobility">
+					description = <"Issues with mobility.">
+				>
+				["at0005"] = <
+					text = <"No problems">
+					description = <"*">
+				>
+				["at0006"] = <
+					text = <"Self-care">
+					description = <"Issues with self-care.">
+				>
+				["at0007"] = <
+					text = <"Usual activities">
+					description = <"Issues with usual activities.">
+					comment = <"e.g. work, study, housework, family or leisure activities.">
+				>
+				["at0008"] = <
+					text = <"Pain/discomfort">
+					description = <"Issues of pain or discomfort.">
+				>
+				["at0009"] = <
+					text = <"Anxiety/depression">
+					description = <"Issue with anxiety or depression.">
+				>
+				["at0010"] = <
+					text = <"Overall health">
+					description = <"A self-assessment of overall health on a scale from 0 to 100">
+				>
+				["at0011"] = <
+					text = <"State">
+					description = <"A 5-digit code formed from the scores of each component, with 9 indicating a missing value">
+					comment = <"e.g. '21491'">
+				>
+				["at0012"] = <
+					text = <"Slight problems">
+					description = <"*">
+				>
+				["at0013"] = <
+					text = <"Moderate problems">
+					description = <"*">
+				>
+				["at0014"] = <
+					text = <"Severe problems">
+					description = <"*">
+				>
+				["at0015"] = <
+					text = <"Unable to walk about.">
+					description = <"*">
+				>
+				["at0016"] = <
+					text = <"No problems">
+					description = <"*">
+				>
+				["at0017"] = <
+					text = <"Slight problems">
+					description = <"*">
+				>
+				["at0018"] = <
+					text = <"Moderate problems">
+					description = <"*">
+				>
+				["at0019"] = <
+					text = <"Severe problems">
+					description = <"*">
+				>
+				["at0020"] = <
+					text = <"Unable to wash or dress">
+					description = <"*">
+				>
+				["at0021"] = <
+					text = <"No problems">
+					description = <"*">
+				>
+				["at0022"] = <
+					text = <"Slight problems">
+					description = <"*">
+				>
+				["at0023"] = <
+					text = <"Moderate problems">
+					description = <"*">
+				>
+				["at0024"] = <
+					text = <"Severe problems">
+					description = <"*">
+				>
+				["at0025"] = <
+					text = <"Unable to do my usual activities">
+					description = <"*">
+				>
+				["at0026"] = <
+					text = <"No pain or discomfort">
+					description = <"*">
+				>
+				["at0027"] = <
+					text = <"Slight pain or discomfort">
+					description = <"*">
+				>
+				["at0028"] = <
+					text = <"Moderate pain or discomfort">
+					description = <"*">
+				>
+				["at0029"] = <
+					text = <"Severe pain or discomfort">
+					description = <"*">
+				>
+				["at0030"] = <
+					text = <"Extreme pain or discomfort">
+					description = <"*">
+				>
+				["at0031"] = <
+					text = <"No anxiety or depression">
+					description = <"*">
+				>
+				["at0032"] = <
+					text = <"Slight anxiety or depression">
+					description = <"*">
+				>
+				["at0033"] = <
+					text = <"Moderate anxiety or depression">
+					description = <"*">
+				>
+				["at0034"] = <
+					text = <"Severe anxiety or depression">
+					description = <"*">
+				>
+				["at0035"] = <
+					text = <"Extreme anxiety or depression">
+					description = <"*">
+				>
+			>
+		>
+	>
