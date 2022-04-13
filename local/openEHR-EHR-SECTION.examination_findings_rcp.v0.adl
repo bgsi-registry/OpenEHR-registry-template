@@ -1,0 +1,70 @@
+archetype (adl_version=1.4; uid=d8521a0e-eb8d-46e1-ac77-c49a8edbec18)
+	openEHR-EHR-SECTION.examination_findings_rcp.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+	translations = <
+		["fi"] = <
+			language = <[ISO_639-1::fi]>
+			author = <
+			>
+		>
+	>
+
+description
+	original_author = <
+		["date"] = <"2014-05-23">
+		["name"] = <"Ian McNicoll">
+		["organisation"] = <"freshEHR Clinical Informatics, UK">
+		["email"] = <"ian@freshehr.com">
+	>
+	lifecycle_state = <"in_development">
+	details = <
+		["fi"] = <
+			language = <[ISO_639-1::fi]>
+			purpose = <"*To organise Examination findings details within a standardised record subheading as recommended by the UK Academy of Royal Colleges (AoMRC).(en)">
+		>
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To organise Examination findings details within a standardised record subheading as recommended by the UK Academy of Royal Colleges (AoMRC).">
+			copyright = <"© Clinical Models UK, openEHR Foundation">
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["references"] = <"Health and Social Care Information Centre, Academy of Medical Royal Colleges (2013) Standards for the Clinical Structure and Content of Patient Records. HSCIC, Leeds.
+Available from: https://www.rcplondon.ac.uk/sites/default/files/standards-for-the-clinical-structure-and-content-of-patient-records.pdf [Accessed July 22, 2014]">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["MD5-CAM-1.0.1"] = <"B9E347DFCF5282C90ED30D8615F803E5">
+		["build_uid"] = <"64ab617a-a907-4812-a1bd-70bb25494caa">
+		["revision"] = <"0.0.1-alpha">
+	>
+
+definition
+	SECTION[at0000] matches {*}    -- Examination findings
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Examination findings">
+					description = <"Examination findings heading (AoMRC).">
+				>
+			>
+		>
+		["fi"] = <
+			items = <
+				["at0000"] = <
+					text = <"Tutkimuksen löydökset">
+					description = <"*Examination findings heading (AoMRC).(en)">
+				>
+			>
+		>
+	>
