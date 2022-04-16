@@ -26,7 +26,7 @@ description
 		["original_namespace"] = <"org.openehr">
 		["original_publisher"] = <"openEHR Foundation">
 		["custodian_namespace"] = <"org.openehr">
-		["MD5-CAM-1.0.1"] = <"d00bb15315b1326848d726433462e15c">
+		["MD5-CAM-1.0.1"] = <"04e654e7c34e8695a48f3d470c57bce3">
 		["build_uid"] = <"4fa47295-e09b-38ea-a550-f8b70014b157">
 	>
 
@@ -64,6 +64,9 @@ ontology
 				["at0000"] = <
 					text = <"TICI scale">
 					description = <"Thrombolysis in cerebral infarction (TICI) scale is a grading system coined by Higashida et al in 2003. This scale describes the response of thrombolytic therapy for ischemic stroke. TICI scale is commonly used post endovascular revascularization.">
+					comment = <"Reference:
+
+Higashida RT, Furlan AJ, Roberts H et-al. Trial design and reporting standards for intra-arterial cerebral thrombolysis for acute ischemic stroke. Stroke. 2003;34 (8): e109-37. doi:10.1161/01.STR.0000082721.62796.09">
 				>
 				["at0001"] = <
 					text = <"History">
