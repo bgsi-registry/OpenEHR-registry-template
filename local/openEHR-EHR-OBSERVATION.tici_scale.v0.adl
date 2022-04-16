@@ -1,0 +1,106 @@
+archetype (adl_version=1.4; uid=739b7d6f-fc6c-4279-b9f5-75a04ef4dcbd)
+	openEHR-EHR-OBSERVATION.tici_scale.v0
+
+concept
+	[at0000]
+
+language
+	original_language = <[ISO_639-1::en]>
+
+description
+	original_author = <
+		["name"] = <"Aly Lamuri">
+		["organisation"] = <"Indonesia Medical Education and Research Institute">
+		["email"] = <"aly.lamuri@alumni.ui.ac.id">
+		["date"] = <"2022-04-16">
+	>
+	lifecycle_state = <"unmanaged">
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+		>
+	>
+	other_details = <
+		["licence"] = <"This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.">
+		["custodian_organisation"] = <"openEHR Foundation">
+		["original_namespace"] = <"org.openehr">
+		["original_publisher"] = <"openEHR Foundation">
+		["custodian_namespace"] = <"org.openehr">
+		["MD5-CAM-1.0.1"] = <"d00bb15315b1326848d726433462e15c">
+		["build_uid"] = <"4fa47295-e09b-38ea-a550-f8b70014b157">
+	>
+
+definition
+	OBSERVATION[at0000] matches {    -- TICI scale
+		data matches {
+			HISTORY[at0001] matches {    -- History
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..*} matches {    -- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {    -- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0006] occurrences matches {0..1} matches {    -- DV_ORDINAL
+										value matches {
+											0|[local::at0007],
+											1|[local::at0008],
+											2|[local::at0009],
+											3|[local::at0010],
+											4|[local::at0011]
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"TICI scale">
+					description = <"Thrombolysis in cerebral infarction (TICI) scale is a grading system coined by Higashida et al in 2003. This scale describes the response of thrombolytic therapy for ischemic stroke. TICI scale is commonly used post endovascular revascularization.">
+				>
+				["at0001"] = <
+					text = <"History">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0006"] = <
+					text = <"DV_ORDINAL">
+					description = <"">
+				>
+				["at0007"] = <
+					text = <"Grade 0">
+					description = <"No perfusion">
+				>
+				["at0008"] = <
+					text = <"Grade 1">
+					description = <"Penetration with minimal perfusion">
+				>
+				["at0009"] = <
+					text = <"Grade 2A">
+					description = <"Partial perfusion with only partial filling (less than two-thirds) of the entire vascular territory">
+				>
+				["at0010"] = <
+					text = <"Grade 2B">
+					description = <"Partial perfusion with complete filling, but the filling is slower than normal">
+				>
+				["at0011"] = <
+					text = <"Grade 3">
+					description = <"Complete perfusion">
+				>
+			>
+		>
+	>
